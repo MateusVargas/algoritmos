@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+
+int main()
+{
+	int num,resultado,contador=1;
+	int aux;
+	printf ("digite um numero: ");
+	scanf("%d",&num);
+
+resultado=num-1;
+aux=resultado;
+	
+	for(int i=1;i<=num;i+=2){
+		aux=aux-i;
+		if(aux>=i){
+		contador++;
+		}
+	
+	}
+	printf("%d",contador);
+	
+}
