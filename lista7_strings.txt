@@ -1,0 +1,403 @@
+Desenvolva um algoritmo com uma função para ler seu nome
+e armazená-lo na variável nome e seu sobrenome
+armazenando-o na variável sobrenome. Depois mostrar o
+valor das duas variáveis para o usuário.
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char nome[30], sobrenome[30];
+    
+    printf("nome: ");
+    gets(nome);
+    
+    printf("sobrenome: ");
+    gets(sobrenome);
+    
+    puts(nome);
+    puts(sobrenome);
+    
+    return 0;
+}
+
+
+
+
+
+
+Crie um terceiro vetor chamado nome_completo e copie o conteúdo
+da variável nome para ele.
+Concatene o conteúdo da variável sobrenome para o final da variável
+nome_completo.
+Imprima o conteúdo da variável nome_completo para o usuário.
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char nome[30], sobrenome[30], nome_completo[60];
+    
+    printf("nome: ");
+    gets(nome);
+    
+    printf("sobrenome: ");
+    gets(sobrenome);
+    
+    strcpy(nome_completo,nome);//copie o conteúdo da variável nome para ele
+    strcat(nome_completo," ");//adicionando espaço entre nome e sobrenome
+    strcat(nome_completo,sobrenome);//Concatene o conteúdo da variável sobrenome para o final da variável nome_completo.
+    
+    puts(nome_completo);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+Crie um algoritmo com uma função que contenha dois vetores
+do tipo char, chamados palavra1 e palavra2. Utilizando a
+função gets, atribua valores (texto) para elas e depois faça o
+seguinte:
+– Descubra o tamanho de cada uma delas.
+– Se e, somente, se tiverem o mesmo tamanho, verifique se as duas
+palavras são iguais e informe ao usuário sobre isso.
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void ler(){
+    char palavra1[30], palavra2[30];
+    int tamanho_palavra1,tamanho_palavra2;
+    
+    printf("palavra1: ");
+    gets(palavra1);
+    
+    printf("palavra2: ");
+    //fgets(palavra2,30,stdin); //fgets recebe a variavel, tamanho dela e a entrada que vai colocar os dados(no caso o teclado)
+    gets(palavra2);
+    
+    tamanho_palavra1 = strlen(palavra1);
+    tamanho_palavra2 = strlen(palavra2);
+    
+    for(int i=0;i<tamanho_palavra1;i++){
+        palavra1[i]=tolower(palavra1[i]);
+        palavra2[i]=tolower(palavra2[i]);
+    }//tolower converte pra minusculo caractere por caractere
+    
+    printf("tamanho de palavra1: %d\n",strlen(palavra1));//comprimento string
+    printf("tamanho da palavra2: %d\n",strlen(palavra2));
+
+    if(tamanho_palavra1 == tamanho_palavra2){
+        int iguais = strcmp(palavra1,palavra2);//retorna zero caso sejam iguais
+        if(iguais==0){
+            printf("palavras iguais");
+        }
+        else{
+            printf("palavras diferentes");
+        }
+    }
+}
+
+int main()
+{
+    ler();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+1. Fazer um programa que leia uma string de caracteres maiúsculos e troque todos os
+caracteres por letras minúsculas.
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char palavra1[30];
+    
+    printf("palavra1: ");
+    gets(palavra1);
+    
+    for(int i=0;i<strlen(palavra1);i++){
+        palavra1[i]=tolower(palavra1[i]);
+    }//tolower converte pra minusculo caractere por caractere
+    
+    puts(palavra1);
+    return 0;
+}
+
+
+
+
+
+
+
+2. Desenvolver um programa que recebe uma palavra e o tipo de conversão que o usuário
+deseja que ela sofra, que poderá ser letras (m)aiúsculas ou mi(n)úsculas. Observe que o campo
+(variável) tipo de conversão deverá ser validado.
+
+
+
+3. Desenvolver um programa que obtenha as seguintes informações para “n” colegas da sua
+turma de algoritmos:
+Nome à char nome[15];
+sobrenome à char sobrenome[30];
+endereço à char end[80];
+telefone à char fone[8];
+idade à char id[3];
+Após, realizar as seguintes tarefas:
+Copiar o nome para uma variável denominada nome_compl;
+Concatenar o sobrenome à variável nome_compl;
+Obter o tamanho da variável nome_compl;
+Imprimir todas as informações (nome_compl, endereço, telefone, idade e tamanho de
+nome_compl) de cada um dos seus colegas na tela.
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char nome[15],sobrenome[30],telefone[8],endereco[80],idade[3],encerrar='n',nome_compl[45];
+    
+    while(encerrar!='s'){
+        printf("nome: ");
+        gets(nome);
+        
+        printf("sobrenome: ");
+        gets(sobrenome);
+        
+        printf("endereco: ");
+        gets(endereco);
+        
+        printf("telefone: ");
+        gets(telefone);
+        
+        printf("idade: ");
+        gets(idade);
+
+        strcpy(nome_compl,nome);
+        strcat(nome_compl," ");
+        strcat(nome_compl,sobrenome);
+        
+        printf("\ntamanho nome_completo: %d\n",strlen(nome_compl));
+        puts(nome_compl);
+        puts(endereco);
+        puts(telefone);
+        puts(idade);
+        
+        printf("s para encerrar/qualquer coisa pra continuar: ");
+        getchar();
+        scanf("%c",&encerrar);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+
+4. Fazer um programa para ler uma string e contar quantas vezes um determinado caractere
+aparece na string. O caractere deverá ser informado pelo usuário.
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char palavra[30], caractere;
+    int cont=0;
+    
+    printf("palavra: ");
+    gets(palavra);
+    
+    printf("caractere: ");
+    scanf("%c",&caractere);
+    
+    for(int i=0;i<strlen(palavra);i++){
+        if(palavra[i]==caractere){
+            cont++;
+        }
+    }
+    
+    printf("caractere %c aparece %d vezes",caractere,cont);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+5. Crie um algoritmo para contar quantos espaços em branco existem em uma frase. Depois o
+programa deve contar quantos caracteres são diferentes do caractere espaço em uma frase.
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char palavra[30];
+    int cont_espacos_branco=0,diferentes=0;
+    
+    printf("palavra: ");
+    gets(palavra);
+    
+    for(int i=0;i<strlen(palavra);i++){
+        if(palavra[i]==' '){
+            cont_espacos_branco++;
+        }
+        else{
+            diferentes++;
+        }
+    }
+    
+    printf("espaços em branco aparecem %d vezes, %d caracteres sao diferentes de espaço em branco",cont_espacos_branco,diferentes);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+6. Fazer um programa para ler uma string e um caractere. Sempre que o caractere lido
+aparecer na frase, ele deverá ser substituído por asterisco.
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char palavra[30], caractere;
+    
+    printf("palavra: ");
+    gets(palavra);
+    
+    printf("caractere: ");
+    scanf("%c",&caractere);
+    
+    for(int i=0;i<strlen(palavra);i++){
+        if(palavra[i]==caractere){
+            palavra[i]='*';
+        }
+    }
+    
+    puts(palavra);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+7. Desenvolva um programa que calcule o preço de venda, preço de custo e valor da taxa de
+entrega de uma floricultura. Para isso, deve-se saber: o tipo de flor (rosa, margarida ou flores
+do campo), a quantidade vendida, o preço unitário, e se haverá embalagem para presente (Sim
+ou Não). O preço de custo será a quantidade de flores vezes o preço unitário. A taxa de
+entrega será de 5% sobre o preço de custo. Finalmente, o preço de venda será o preço de
+custo mais o valor da taxa de entrega.
+
+
+
+8. Crie um programa que leia duas strings (A e B) e mostre uma terceira string (C) formada
+pelos caracteres contidos em A e B de forma intercalada. Exemplo: Se A = “quarta” e B =
+“segunda”, a resposta obtida deverá ser “qsueagrutnada”.
+
+/////////FALTA TERMINAR
+
+#include <stdio.h>
+#include <string.h>
+
+void intercalar(char a[15], char b[15]){
+    char c[30];
+    int conta_string_A=0,conta_string_B=0;
+    
+    // for(int i=0;i<strlen(a)+strlen(b);i++){
+    //     if(i%2==0){
+    //         c[i]=a[conta_string_A];
+    //         conta_string_A++;
+    //     }
+    //     else{
+    //         c[i]=b[conta_string_B];
+    //         conta_string_B++;
+    //     }
+    // }
+    int lk=2;
+    int ol=strlen(a)>strlen(b) ? strlen(a)-strlen(b) : strlen(b)-strlen(a);
+    int h=0,p=1;
+    
+   
+    
+    // for(int i=0;i<strlen(a);i++){
+    //     c[h]=a[i];
+    //     h+=2;
+    // }
+
+    // for(int i=0;i<strlen(b);i++){
+    //     c[p]=b[i];
+    //     p+=2;
+    // }
+    
+    //if(strlen(a)>strlen(b)){
+        //int g=(strlen(b)+strlen(b)+1);
+        // for(int i=strlen(a)-strlen(b);i<strlen(c);i++){
+        //   // printf("%c",a[i]);
+        //     c[g]=a[i];
+        //     g++;
+        // }
+        for(int i=0;i<strlen(b);i++){
+            c[i]=b[i];
+            c[i+1]=a[i];
+        }
+    //}
+    
+    puts(c);
+}
+
+int main()
+{
+    char a[15],b[15],c[30];
+
+    printf("string A: ");
+    gets(a);
+        
+    printf("string B: ");
+    gets(b);
+    
+    intercalar(a,b);
+    
+    return 0;
+}
+
+

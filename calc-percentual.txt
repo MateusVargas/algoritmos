@@ -1,0 +1,49 @@
+-Quanto é 29 % de 1546 ?
+29*1546=44834
+44834/100=448.34
+
+
+-O valor 2 é qual porcentagem de valor 23 ?
+2*100=200
+200/23=8.695652173913%
+
+
+-80 que AUMENTOU para 123 Qual foi o aumento percentual?
+123-80=43
+43/80=0,5375
+0,5375*100=53.75
+
+
+-70 que DIMINUIU para 19 Qual foi a diminuição percentual?
+70-19=51
+51/70=0,728
+0,728*100=72.85
+
+
+-Tenho um valor de 45 e quero AUMENTAR 20 % Qual é o resultado?
+45*1.20=54
+ou
+45*20=900
+900/100=9
+45+9=54
+
+
+-Tenho um valor de 6004 e quero DIMINUIR 10% Qual é o resultado?
+6004*0.90=5403.6
+ou
+6004*10=60040
+60040/100=600.4
+6004-600.4=5403.6
+
+
+-Tenho um valor inicial que DIMINUIU em 20% e passou para 15. Qual é o valor inicial?
+1-0.20=0.80
+15/0.80=18.75
+
+
+-Tenho um valor inicial que AUMENTOU em 45% e passou para 74. Qual é o valor inicial?
+1+1.45=1.45
+74/1.45=51.03
+
+
+

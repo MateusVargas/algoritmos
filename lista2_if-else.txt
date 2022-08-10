@@ -1,0 +1,679 @@
+Exercício: Ler três valores inteiros distintos e mostrar na tela
+qual o maior deles.
+
+#include <stdio.h>
+
+int main(){
+    int a, b, c;
+    
+    printf("valores de a, b e c: ");
+    scanf("%d %d %d",&a,&b,&c);
+    
+    if(a >= b && a >= c){
+        printf("%d é o maior",a);
+    }
+    else if(b >= a && b >= c){
+        printf("%d é o maior",b);
+    }
+    else{
+        printf("%d é o maior",c);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+1. Desenvolva um programa para ler a temperatura de uma pessoa doente e mostrar a mensagem
+“está com febre” ou “Não está com febre” considerando o valor base de 37.5ºC.
+
+#include <stdio.h>
+
+int main(){
+    float temperatura;
+    
+    printf("temperatura: ");
+    scanf("%f",&temperatura);
+    
+    if(temperatura >= 37.5){
+        printf("está com febre");
+    }
+    else{
+        printf("Não está com febre");
+    }
+    
+    return 0;
+}
+
+
+
+
+
+2. Desenvolva um algoritmo que leia duas notas de um aluno e calcule a média aritmética. Depois,
+apresente a mensagem “Aprovado”, caso a média seja maior ou igual a 7.0, ou “Reprovado” caso
+seja menor que 7.0.
+
+#include <stdio.h>
+
+int main(){
+    float nota1, nota2, media;
+    
+    printf("1° nota: ");
+    scanf("%f",&nota1);
+    
+    printf("2° nota: ");
+    scanf("%f",&nota2);
+    
+    media = (nota1+nota2)/2;
+    
+    if(media >= 7){
+        printf("Aprovado");
+    } else {
+        printf("Reprovado");
+    }
+    
+    return 0;
+}
+
+
+
+
+
+3. Escrever um algoritmo que solicite a distância em km e o tempo de viagem em horas de um
+automóvel e dizer se a velocidade média foi superior ao limite de 110km/h ou não.
+
+#include <stdio.h>
+
+int main(){
+    float distancia, tempo, velocidade_media;
+    
+    printf("informe a distância em km: ");
+    scanf("%f",&distancia);
+    
+    printf("informe o tempo da viagem em horas: ");
+    scanf("%f",&tempo);
+    
+    velocidade_media = distancia / tempo;
+    
+    if(velocidade_media > 110){
+        printf("velocidade média acima de 110km/h.");
+    } else {
+        printf("velocidade média abaixo de 110km/h");
+    }
+    
+    return 0;
+}
+
+//////////////// USANDO TERNÁRIO
+
+#include <stdio.h>
+
+void main(){
+    float distancia, tempo, v_media;
+    
+    printf("informe a distancia em KM:");
+    scanf("%f",&distancia);
+    
+    printf("informe o tempo da viagem:");
+    scanf("%f",&tempo);
+    
+    v_media = distancia / tempo;
+    
+    v_media > 110 ? printf("passou do limite") : printf("não passou do limite");
+}
+
+
+
+
+
+
+
+
+
+4. Criar um programa que lê um número inteiro e exibe a mensagem dizendo se ele é totalmente
+divisível por 7 (resto 0) ou não.
+
+#include <stdio.h>
+
+int main(){
+    int numero;
+    
+    scanf("%d",&numero);
+    
+    if(numero % 7 == 0){
+        printf("%d é divisível por 7",numero);
+    }
+    else{
+        printf("%d não é divisível por 7",numero);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+5. Ler um número inteiro e imprimir uma mensagem informando se ele é par e divisível totalmente
+divisível por 3.
+
+#include <stdio.h>
+
+int main(){
+    long int numero;
+    
+    scanf("%li",&numero);
+    fflush(stdin);
+    
+    if(numero % 2 == 0){
+        printf("numero é par");
+    } else {
+        printf("numero é impar");
+    }
+    
+    printf("\n");
+    
+    if(numero % 3 == 0){
+        printf("numero é divisível por 3");
+    } else {
+        printf("numero não é divisível por 3");
+    }
+
+    // if(numero % 2 == 0 && numero % 3 == 0){
+    //     printf("numero é divisível por 3 e é par");
+    // }
+    
+    return 0;
+}
+
+
+
+
+
+6. Criar um algoritmo que leia um número inteiro e diga a qual mês do ano o mesmo corresponde. Se
+o valor for maior que doze ou menor que um, apresente uma mensagem informando que o valor não
+corresponde a nenhum mês. Ex.: 3  mês de março.
+
+#include <stdio.h>
+
+void main(){
+    int mes;
+    
+    scanf("%d",&mes);
+    
+    if(mes == 1){
+        printf("janeiro");
+    }
+    else if(mes == 2){
+        printf("fevereiro");
+    }
+    else if(mes == 3){
+        printf("março");
+    }
+    else if(mes == 4){
+        printf("abril");
+    }
+    else if(mes == 5){
+        printf("maio");
+    }
+    else if(mes == 6){
+        printf("junho");
+    }
+    else if(mes == 7){
+        printf("julho");
+    }
+    else if(mes == 8){
+        printf("agosto");
+    }
+    else if(mes == 9){
+        printf("setembro");
+    }
+    else if(mes == 10){
+        printf("outubro");
+    }
+    else if(mes == 11){
+        printf("novembro");
+    }
+    else if(mes == 12){
+        printf("dezembro");
+    }
+    else{
+        printf("mes invalido");
+    }
+    
+}
+
+
+
+
+
+
+7. A partir de dois números fornecidos pelo usuário, escrever uma das seguintes mensagens:
+a) Os dois são pares
+b) Os dois são impares
+c) O primeiro é par e o segundo é ímpar
+d) O primeiro é ímpar e o segundo é par
+
+#include <stdio.h>
+
+void main(){
+    int a, b;
+    
+    scanf("%d",&a);
+    scanf("%d",&b);
+    
+    if(a%2 == 0 && b%2 == 0){
+        printf("os dois sao pares");
+    }
+    else if(a%2 != 0 && b%2 != 0){
+        printf("os dois sao impares");
+    }
+    else if(a%2 == 0 && b&2 !=0){
+        printf("o primeiro e par e o segundo e impar");
+    }
+    else{
+        printf("o primeiro e impar e o segundo e par");
+    }
+}
+
+
+
+
+
+8. Escreva um algoritmo que leia uma letra e imprima uma mensagem dizendo se é vogal ou não.
+
+#include <stdio.h>
+#include <ctype.h>
+
+void main(){
+    char letra, tolower_letra;
+    
+    printf("digite uma letra: ");
+    scanf("%c",&letra);
+    
+    tolower_letra = tolower(letra);
+
+    if(tolower_letra == 'a'){
+        printf("%c é uma vogal",letra);
+    }
+    else if(tolower_letra == 'e'){
+        printf("%c é uma vogal",letra);
+    }
+    else if(tolower_letra == 'i'){
+        printf("%c é uma vogal",letra);
+    }
+    else if(tolower_letra == 'o'){
+        printf("%c é uma vogal",letra);
+    }
+    else if(tolower_letra == 'u'){
+        printf("%c é uma vogal",letra);
+    }
+    else{
+        printf("%c não é uma vogal",letra);
+    }
+}
+
+
+
+
+
+
+
+9. Um professor resolveu considerar, para cálculo da média final do semestre, somente as duas
+maiores notas das três provas realizadas pelos alunos. Para auxiliá-lo, deve-se fazer um algoritmo
+que leia as três notas de um aluno e escreva a média aritmética considerando apenas as suas duas
+maiores notas.
+
+#include <stdio.h>
+
+int main(){
+    float nota1, nota2, nota3, maior_nota, segunda_maior_nota, media;
+    
+    printf("nota 1: ");
+    scanf("%f",&nota1);
+    
+    printf("nota 2: ");
+    scanf("%f",&nota2);
+    
+    printf("nota 3: ");
+    scanf("%f",&nota3);
+    
+    if(nota1>=nota2 && nota1>=nota3 && nota2>=nota3){
+        maior_nota = nota1;
+        segunda_maior_nota = nota2;
+    }
+    else if(nota1>=nota2 && nota1>=nota3 && nota3>=nota2){
+        maior_nota = nota1;
+        segunda_maior_nota = nota3;
+    }
+    else if(nota2>=nota1 && nota2>=nota3 && nota1>=nota3){
+        maior_nota = nota2;
+        segunda_maior_nota = nota1;
+    }
+    else if(nota2>=nota1 && nota2>=nota3 && nota3>=nota1){
+        maior_nota = nota2;
+        segunda_maior_nota = nota3;
+    }
+    else if(nota3>=nota1 && nota3>=nota2 && nota2>=nota1){
+        maior_nota =nota3;
+        segunda_maior_nota = nota2;
+    }
+    else if(nota3>=nota2 && nota3>nota2 && nota1>=nota2){
+        maior_nota = nota3;
+        segunda_maior_nota = nota1;
+    }
+    
+    //printf("maior nota: %.2f,\n segunda_maior_nota: %.2f",maior_nota,segunda_maior_nota);
+    media = (maior_nota + segunda_maior_nota)/2;
+    printf("média: %.2f",media);
+    
+    return 0;
+}
+
+
+
+
+
+10. O índice de massa corporal (IMC) é calculado dividindo-se o peso de uma pessoa pela sua altura ao
+quadrado. A partir do valor de IMC podemos classificar a pessoa quanto ao peso conforme os
+intervalos apresentados a seguir (revista Galileu nov2004):
+IMC Classificação
+[0 : 18,5) Abaixo do peso
+[18,5 : 25) Normal
+[25 : 30) Pré-obeso
+[30 : 35) Obeso classe I
+[35 : 40) Obeso classe II
+[40 ou mais] Obeso classe III
+Fazer um algoritmo que leia o peso e a altura de uma pessoa, escrevendo a classificação desta
+pessoa.
+
+#include <stdio.h>
+#include <math.h>
+
+void main(){
+    float altura, peso, imc;
+    
+    printf("informe a altura: ");
+    scanf("%f",&altura);
+    
+    printf("informe o peso: ");
+    scanf("%f",&peso);
+    
+    imc = peso/pow(altura,2);
+    
+    printf("IMC: %.2f\n",imc);
+    
+    if(imc >= 0 && imc < 18.5){
+        printf("abaixo da média");
+    }
+    else if(imc >= 18.5 && imc < 25){
+        printf("normal");
+    }
+    else if(imc >= 25 && imc < 30){
+        printf("pré-obeso");
+    }
+    else if(imc >= 30 && imc < 35){
+        printf("obeso classe I");
+    }
+    else if(imc >= 35 && imc < 40){
+        printf("obeso classe II");
+    }
+    else if(imc >= 40){
+        printf("obeso classe III");
+    }
+    else{
+        printf("imc inválido");
+    }
+}
+
+
+
+
+
+
+11. Fazer um algoritmo que leia dois números e apresente-os em ordem crescente
+
+#include <stdio.h>
+
+void main(){
+    int a, b;
+    
+    scanf("%d %d",&a,&b);
+    
+    if(a > b){
+        printf("%d, %d",b,a);
+    }
+    else{
+        printf("%d %d",a,b);
+    }
+    
+}
+
+
+
+
+
+
+12. Fazer um algoritmo que leia um número inteiro, verifique e escreva se ele e negativo, zero ou
+positivo. Caso seja positivo diga ainda se ele e par ou impar.
+
+#include <stdio.h>
+
+int main(){
+    long int numero;
+    
+    scanf("%li",&numero);
+    
+    if(numero < 0){
+        printf("numero negativo");
+    }
+    else if(numero == 0){
+        printf("igual a zero");
+    }
+    else{
+        if(numero % 2 == 0){
+            printf("numero é par");
+        }
+        else{
+            printf("numero é impar");
+        }
+        printf("\nnumero positivo");
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+13. Fazer um algoritmo que leia valores para as variáveis hora, minuto e segundo; verificando e
+escrevendo se elas correspondem a um horário válido ou não. Para um horário ser valido, a hora
+deve estar no intervalo de 0 a 23, o minuto e o segundo no intervalo de 0 a 59.
+
+#include <stdio.h>
+
+void main(){
+    int hora, minuto, segundo;
+    
+    printf("hora: ");
+    scanf("%d",&hora);
+    
+    printf("minuto: ");
+    scanf("%d",&minuto);
+    
+    printf("segundos: ");
+    scanf("%d",&segundo);
+    
+    if(hora < 0 || hora > 23){
+        printf("hora invalida");
+    }
+    else if(minuto < 0 || minuto >= 60){
+        printf("minuto invalido");
+    }
+    else if(segundo < 0 || segundo >= 60){
+        printf("segundos invalido");
+    }
+    else{
+        printf("hora é valida, %d:%d:%d",hora,minuto,segundo);
+    }
+    
+}
+
+
+
+
+
+
+14. Fazer um algoritmo que leia e verifique se três valores (a,b,c) podem ser os comprimentos dos lados
+de um triângulo, escrevendo o tipo do triângulo (equilátero, isósceles, escaleno).
+Não é triângulo A soma dos lados menores é menor ou igual ao lado maior
+Eqüilátero Todos os lados com tamanhos iguais
+Isósceles Somente dois lados com tamanhos iguais
+Escaleno Todos os lados com tamanhos diferentes
+
+#include <stdio.h>
+
+void main(){
+    int a, b, c, maior, menor, segundo_menor, soma_lados_menores;
+    
+    printf("informe os valores dos 3 lados do triângulo: ");
+    scanf("%d %d %d",&a,&b,&c);
+    
+    if(a<=b && a<=c && b<=c){
+        maior = c;
+        menor = a;
+        segundo_menor = b;
+    }
+    else if(b<=a && b<=c && a<=c){
+        maior = c;
+        menor = b;
+        segundo_menor = a;
+    }
+    else if(a<=b && a<=c && c<=b){
+        maior = b;
+        menor = a;
+        segundo_menor = c;
+    }
+    else if(c<=a && c<=b && a<=b){
+        maior = b;
+        menor = c;
+        segundo_menor = a;
+    }
+    else if(b<=a && b<=c && c<=a){
+        maior = a;
+        menor = b;
+        segundo_menor = c;
+    }
+    else if(c<=b && c<=a && b<=a){
+        maior = a;
+        menor = c;
+        segundo_menor = b;
+    }
+    
+    //printf("maior: %d, menor: %d, segundo_menor: %d",maior,menor,segundo_menor);
+    //soma_lados_menores = menor + segundo_menor;
+    
+    if(menor + segundo_menor <= maior){
+        printf("Não é triângulo");
+    }
+    else if(a == b && a == c){
+        printf("Eqüilátero");
+    }
+    else if((a==b && b!=c) || (a==c && a!=b) || (b==c && b!=a)){
+        printf("Isósceles");
+    }
+    else if(a != b && a != c && b != c ){
+        printf("Escaleno");
+    }
+}
+
+
+//OUTRA FORMA
+
+#include <stdio.h>
+
+void main(){
+    int a, b, c;
+    
+    printf("informe os valores dos 3 lados do triângulo: ");
+    scanf("%d %d %d",&a,&b,&c);
+    
+    if((a+b <=c) || (b+c <=a) || (a+c <=b)){
+        printf("nao e triângulo");
+    }
+    else if(a == b && a == c){
+        printf("Eqüilátero");
+    }
+    else if((a==b && b!=c) || (a==c && a!=b) || (b==c && b!=a)){
+        printf("Isósceles");
+    }
+    else if(a != b && a != c && b != c ){
+        printf("Escaleno");
+    }
+}
+
+
+
+
+
+
+15. Uma cafeteria possui o seguinte cardápio:
+Especificação Código Preço
+Café expresso pequeno 100 2,00
+Café expresso grande 101 3,00
+Café com leite pequeno 102 2,50
+Café com leite grande 103 3,50
+Água sem gás (200 ml) 104 1,50
+Água com gás (500 ml) 105 2,40
+Fazer um algoritmo que leia a quantidade e o código do item pedido, e calcule o valor a ser pago.
+Considere que em cada execução somente será calculado um tipo de item. O algoritmo deve
+escrever a descrição do produto pedido, a quantidade, o valor unitário e o total a ser pago.
+
+#include <stdio.h>
+
+void main(){
+    int codigo, qtd;
+    float total;
+    
+    printf("informe o codigo do item: ");
+    scanf("%d",&codigo);
+    
+    printf("informe a quantidade: ");
+    scanf("%d",&qtd);
+    
+    if(codigo == 100){
+        total = qtd * 2;
+        printf("produto: Café expresso pequeno, quantidade: %d, total a pagar R$%.2f",qtd,total);
+    }
+    else if(codigo == 101){
+        total = qtd * 3;
+        printf("produto: Café expresso grande, quantidade: %d, total a pagar R$%.2f",qtd,total);
+    }
+    else if(codigo == 102){
+        total = qtd * 2.5;
+        printf("produto: Café com leite pequeno, quantidade: %d, total a pagar R$%.2f",qtd,total);
+    }
+    else if(codigo == 103){
+        total = qtd * 3.5;
+        printf("produto: Café com leite grande, quantidade: %d, total a pagar R$%.2f",qtd,total);
+    }
+    else if(codigo == 104){
+        total = qtd * 1.5;
+        printf("produto: Água sem gás (200 ml), quantidade: %d, total a pagar R$%.2f",qtd,total);
+    }
+    else if(codigo == 105){
+        total = qtd * 2.4;
+        printf("produto: Água com gás (500 ml), quantidade: %d, total a pagar R$%.2f",qtd,total);
+    }
+    else{
+        printf("produto inválido");
+    }
+}
+
+

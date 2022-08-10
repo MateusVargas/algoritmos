@@ -1,0 +1,736 @@
+// Desenvolva um algoritmo com um registro que contenha o
+// nome do aluno, nota 1, nota 2, e média final. Faça a leitura
+// dos valores dos campos e apresente ao usuário.
+
+#include <stdio.h>
+
+struct alunos{
+    char nome[30];
+    float n1,n2,media;
+};
+
+int main(){
+    
+    struct alunos aluno;
+    printf("nome:");
+    gets(aluno.nome);
+    
+    scanf("%f %f",&aluno.n1,&aluno.n2);
+    aluno.media = (aluno.n1+aluno.n2)/2;
+    
+    printf("media: %.2f",aluno.media);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+// Desenvolver um algoritmo para cadastrar informações de 5
+// produtos de uma loja de conveniências de um posto de
+// combustível.
+// • Cada produto deve conter um código, nome, preço normal e
+// preço para estudante (metade do preço normal, que deve ser
+// calculado pelo programa).
+// • Depois apresentar os produtos na tela.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct produtos{
+    char codigo[20];
+    char nome[30];
+    float preco_normal;
+    float preco_estudante;
+};
+
+typedef struct produtos Produto;
+
+int main(){
+    Produto produtos[5];
+    
+    for(int i=0;i<5;i++){
+        printf("produto[%d] codigo: ",i+1);
+        gets(produtos[i].codigo);
+        
+        printf("produto[%d] nome: ",i+1);
+        gets(produtos[i].nome);
+        
+        printf("produto[%d] preço: ",i+1);
+        scanf("%f",&produtos[i].preco_normal);
+        
+        produtos[i].preco_estudante = produtos[i].preco_normal/2;
+        getchar();
+    }
+    
+    printf("\n\n");
+    
+    for(int i=0;i<5;i++){
+        printf("produto %d\n",i+1);
+        printf("codigo: %s\n",produtos[i].codigo);
+        printf("nome: %s\n",produtos[i].nome);
+        printf("preco_normal: %.2f\n",produtos[i].preco_normal);
+        printf("preco_estudante: %.2f\n\n",produtos[i].preco_estudante);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+1. Faça um algoritmo com uma função que receba os campos nome, endereço e email de
+contato de uma pessoa e armazene-os em um registro. Depois, listar os dados na tela.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct pessoa{
+    char nome[50];
+    char endereco[50];
+    char email[20];
+} ps; //variavel global da struct pessoa chamada ps
+
+typedef struct pessoa dd; //renomeia struct pessoa para dd, então criar variavel do tipo struct pessoa será dd nome_variavel
+
+void recebe(char nome[50], char endereco[50], char email[20]){
+    dd pessoa;//variavel pessoa é diferente da variavel global da linha 12
+    
+    for(int i=0;i<strlen(nome);i++){
+        pessoa.nome[i]=nome[i];
+    }
+    for(int i=0;i<strlen(endereco);i++){
+        pessoa.endereco[i]=endereco[i];
+    }
+    for(int i=0;i<strlen(email);i++){
+        pessoa.email[i]=email[i];
+    }
+    
+    puts(pessoa.nome);
+    puts(pessoa.endereco);
+    puts(pessoa.email);
+}
+
+int main(){
+    char nome[50],endereco[50],email[20];
+    gets(nome);
+    gets(endereco);
+    gets(email);
+    
+    recebe(nome,endereco,email);
+}
+
+
+
+
+
+
+
+
+
+
+2. Desenvolva um algoritmo para ler o nome, sexo e idade de 10 pessoas. Em seguida,
+solicitar ao usuário que digite um sexo e exibir o nome e idade das pessoas que possuem
+aquele sexo.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct pessoas{
+    char nome[30];
+    char sexo;
+    int idade;
+};
+
+
+int main(){
+    struct pessoas pessoa[10];
+    char sexo;
+    
+    for(int i=0;i<4;i++){
+        printf("informe o nome: ");
+        getchar();
+        gets(pessoa[i].nome);
+        
+        printf("sexo: ");
+        scanf("%c",&pessoa[i].sexo);
+        
+        while(pessoa[i].sexo!='f'&&pessoa[i].sexo!='m'){
+            printf("sexo: ");
+            getchar();
+            scanf("%c",&pessoa[i].sexo);
+        }
+        
+        printf("idade: ");
+        scanf("%d",&pessoa[i].idade);
+    }
+    
+    printf("informe um sexo pra pesquisa: ");
+    getchar();
+    scanf("%c",&sexo);
+    
+    while(sexo!='f'&&sexo!='m'){
+        printf("informe um sexo pra pesquisa: ");
+        getchar();
+        scanf("%c",&sexo);
+    }
+    
+    printf("cadastro com pessoas do sexo %c\n",sexo);
+    
+    for(int i=0;i<4;i++){
+        if(pessoa[i].sexo==sexo){
+            printf("nome: %s\n",pessoa[i].nome);
+            printf("sexo: %c\n",pessoa[i].sexo);
+            printf("idade: %d\n",pessoa[i].idade);
+        }
+    }
+
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+3. Faça um algoritmo para realizar cadastro e consulta de informações sobre automóveis
+usados na concessionária FastCar, onde é apresentado o seguinte menu:
+1. Cadastrar automóvel
+2. Consultar automóvel
+3. Gerar relatório
+4. Sair do programa
+
+Na opção 1 o usuário cadastra a placa, descrição, fabricante, cor, ano de fabricação e
+preço. Na opção 2 o usuário deve informar uma placa e o algoritmo deve exibir as
+informações sobre o veículo. Caso não encontre, deve exibir uma mensagem informando
+isso. A opção 3 deve gerar um relatório contendo todos os dados dos automóveis
+cadastrados. Considere um máximo de 12 veículos no cadastro.
+
+
+
+
+//////////////////////////
+
+
+4. Em uma pesquisa envolvendo 20 entrevistados, uma editora solicitou os seguintes dados:
+sexo, idade e quantidade de livros que leu em 2020. Faça um programa que leia os dados
+digitados pelo usuário e ao final, calcule e imprima:
+a) A quantidade total de livros lidos pelos entrevistados menores de 10 anos;
+b) A quantidade de mulheres que leram 5 livros ou mais;
+c) O percentual de pessoas que não leram livros.
+
+5. Baseando-se no exercício anterior, acrescente no algoritmo um menu que permita ao
+usuário escolher um dos seguintes tipos de relatórios:
+a) Por ordem inversa de registro;
+b) Por idade em ordem crescente;
+c) Por idade em ordem decrescente;
+d) Por sexo e por ordem de sexo;
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define total 20
+
+struct pesquisa{
+  char sexo;
+  int idade;
+  int qtd_livros_lidos;
+};
+
+typedef struct pesquisa Pesquisa;
+
+int main(){
+    Pesquisa pesquisa[total];
+    int total_livros_lidos_menores10anos=0, qtd_mulheres=0, qtd_pessoas_nao_leram_livros=0, tipo_relatorio;
+    float percentual;
+    int sair=0;
+    
+    for(int i=0;i<total;i++){
+        printf("informe o sexo: ");
+        scanf("%c",&pesquisa[i].sexo);
+        
+        // while(pesquisa[i].sexo!='f'&&pesquisa[i].sexo!='m'){
+        //     printf("informe o sexo: ");
+        //     scanf("%c",&pesquisa[i].sexo);
+        // }
+        
+        printf("informe a idade: ");
+        scanf("%d",&pesquisa[i].idade);
+        
+        while(pesquisa[i].idade<0){
+            printf("informe a idade: ");
+            scanf("%d",&pesquisa[i].idade);
+        }
+        
+        printf("quantidade de livros lidos: ");
+        scanf("%d",&pesquisa[i].qtd_livros_lidos);
+        
+        while(pesquisa[i].qtd_livros_lidos<0){
+            printf("quantidade de livros lidos: ");
+            scanf("%d",&pesquisa[i].qtd_livros_lidos);
+        }
+        
+        if(pesquisa[i].sexo=='f'){
+            if(pesquisa[i].qtd_livros_lidos>=5){
+                qtd_mulheres++;
+            }
+        }
+        if(pesquisa[i].idade<10){
+            total_livros_lidos_menores10anos+=pesquisa[i].qtd_livros_lidos;
+        }
+        if(pesquisa[i].qtd_livros_lidos==0){
+            qtd_pessoas_nao_leram_livros++;
+        }
+        getchar();
+    }
+    
+    for(int i=0;i<total;i++){
+        printf("\nsexo: %c\n",pesquisa[i].sexo);
+        printf("idade: %d\n",pesquisa[i].idade);
+        printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+    }
+    
+    percentual=(float)qtd_pessoas_nao_leram_livros*100/total;
+    printf("\n\ntotal de livros lidos por menores de 10 anos: %d\n",total_livros_lidos_menores10anos);
+    printf("quantidade de mulheres que leram 5 livros ou mais: %d\n",qtd_mulheres);
+    printf("percentual de pessoas que não leram livros: %.2f%%\n",percentual);
+    
+    
+    while(sair!=1){
+        printf("\n\n\ntipo de relatório: \n");
+        printf("1) Por ordem inversa de registro\n2) Por idade em ordem crescente\n3) Por idade em ordem decrescente\n4) Por sexo e por ordem de sexo\n\n");
+        scanf("%d",&tipo_relatorio);
+        
+        while(tipo_relatorio!=1&&tipo_relatorio!=2&&tipo_relatorio!=3&&tipo_relatorio!=4){
+            printf("\n\n\ntipo de relatório inválido: \n");
+            printf("1) Por ordem inversa de registro\n2) Por idade em ordem crescente\n3) Por idade em ordem decrescente\n4) Por sexo e por ordem de sexo\n\n");
+            scanf("%d",&tipo_relatorio);
+        }
+        
+        switch(tipo_relatorio){
+            case 1:{
+                printf("ordem inversa de registro:\n");
+                for(int i=total-1;i>=0;i--){
+                    printf("\nsexo: %c\n",pesquisa[i].sexo);
+                    printf("idade: %d\n",pesquisa[i].idade);
+                    printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                }
+                break;
+            }
+    
+            case 2:{
+                Pesquisa pesquisa_aux;
+                for(int i=0;i<total;i++){
+                    for(int j=0;j<i;j++){
+                        if(pesquisa[i].idade<pesquisa[j].idade){
+                            pesquisa_aux = pesquisa[i];
+                            pesquisa[i] = pesquisa[j];
+                            pesquisa[j] = pesquisa_aux;
+                        }
+                    }
+                }
+                
+                printf("idade em ordem crescente:\n");
+                for(int i=0;i<total;i++){
+                    printf("\nsexo: %c\n",pesquisa[i].sexo);
+                    printf("idade: %d\n",pesquisa[i].idade);
+                    printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                }
+                break;
+            }
+            
+            case 3:{
+                Pesquisa pesquisa_aux;
+                for(int i=0;i<total;i++){
+                    for(int j=0;j<i;j++){
+                        if(pesquisa[i].idade>pesquisa[j].idade){
+                            pesquisa_aux = pesquisa[i];
+                            pesquisa[i] = pesquisa[j];
+                            pesquisa[j] = pesquisa_aux;
+                        }
+                    }
+                }
+                
+                printf("idade em ordem decrescente:\n");
+                for(int i=0;i<total;i++){
+                    printf("\nsexo: %c\n",pesquisa[i].sexo);
+                    printf("idade: %d\n",pesquisa[i].idade);
+                    printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                }
+                break;
+            }
+            
+            case 4:{
+                char question;
+                printf("informe o sexo para imprimir os registros: ");
+                getchar();
+                scanf("%c",&question);
+                
+                if(question=='f'){
+                    printf("registros do sexo %c:\n",question);
+                    for(int i=0;i<total;i++){
+                        if(pesquisa[i].sexo=='f'){
+                            printf("\nsexo: %c\n",pesquisa[i].sexo);
+                            printf("idade: %d\n",pesquisa[i].idade);
+                            printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                        }
+                    }
+                }
+                else if(question=='m'){
+                    printf("registros do sexo %c:\n",question);
+                    for(int i=0;i<total;i++){
+                        if(pesquisa[i].sexo=='m'){
+                            printf("\nsexo: %c\n",pesquisa[i].sexo);
+                            printf("idade: %d\n",pesquisa[i].idade);
+                            printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                        }
+                    }
+                }
+                
+                printf("\ninforme o sexo para ordenar os registros: ");
+                getchar();
+                scanf("%c",&question);
+                
+                if(question=='f'){
+                    for(int i=0;i<total;i++){
+                        if(pesquisa[i].sexo=='f'){
+                            printf("\nsexo: %c\n",pesquisa[i].sexo);
+                            printf("idade: %d\n",pesquisa[i].idade);
+                            printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                        }
+                    }
+                    for(int i=0;i<total;i++){
+                        if(pesquisa[i].sexo=='m'){
+                            printf("\nsexo: %c\n",pesquisa[i].sexo);
+                            printf("idade: %d\n",pesquisa[i].idade);
+                            printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                        }
+                    }
+                }
+                else if(question=='m'){
+                    for(int i=0;i<total;i++){
+                        if(pesquisa[i].sexo=='m'){
+                            printf("\nsexo: %c\n",pesquisa[i].sexo);
+                            printf("idade: %d\n",pesquisa[i].idade);
+                            printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                        }
+                    }
+                    for(int i=0;i<total;i++){
+                        if(pesquisa[i].sexo=='f'){
+                            printf("\nsexo: %c\n",pesquisa[i].sexo);
+                            printf("idade: %d\n",pesquisa[i].idade);
+                            printf("quantidade livros lidos: %d\n",pesquisa[i].qtd_livros_lidos);
+                        }
+                    }
+                }
+                
+                break;
+            }
+            
+            default:{
+                printf("opcao invalida");
+                break;
+            }
+        }
+        
+        printf("\ndigite um numero pra continuar ou 1 pra sair\n");
+        scanf("%d",&sair);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+
+6. Uma fábrica de tecidos armazena as seguintes informações sobre cada tecido: código,
+descrição, preço do metro, quantidade em estoque (em metros). Faça um algoritmo que
+leia um lote de 8 tecidos e depois imprima:
+a) Um relatório contendo as informações de cada tecido, cada qual em uma coluna;
+b) Um relatório dos tecidos com estoque inferior a 50 metros;
+c) Um relatório dos tecidos com preço do metro inferior a R$ 0,60.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct tecido{
+    int codigo;
+    char descricao[30];
+    float preco_metro;
+    int qtd_estoque;
+};
+
+int main(){
+    struct tecido tecido[8];
+    char sair;
+    int opcao_relatorio;
+    
+    for(int i=0;i<8;i++){
+        printf("\n\ntecido %d\n",i+1);
+        
+        printf("codigo: ");
+        scanf("%d",&tecido[i].codigo);
+        printf("descricao: ");
+        getchar();
+        gets(tecido[i].descricao);
+        printf("preco metro: ");
+        scanf("%f",&tecido[i].preco_metro);
+        printf("qtd estoque: ");
+        scanf("%d",&tecido[i].qtd_estoque);
+    }
+    
+    while(sair!='s'){
+        printf("1) Um relatório contendo as informações de cada tecido, cada qual em uma coluna\n");
+        printf("2) Um relatório dos tecidos com estoque inferior a 50 metros\n");
+        printf("3) Um relatório dos tecidos com preço do metro inferior a R$ 0,60.\n");
+        scanf("%d",&opcao_relatorio);
+        
+        while(opcao_relatorio!=1 && opcao_relatorio!=2 && opcao_relatorio!=3){
+            printf("1) Um relatório contendo as informações de cada tecido, cada qual em uma coluna\n");
+            printf("2) Um relatório dos tecidos com estoque inferior a 50 metros\n");
+            printf("3) Um relatório dos tecidos com preço do metro inferior a R$ 0,60.\n");
+            scanf("%d",&opcao_relatorio);
+        }
+        
+        if(opcao_relatorio==1){
+            for(int i=0;i<8;i++){
+                printf("codigo: %d\t\t",tecido[i].codigo);
+            }
+            printf("\n");
+            for(int i=0;i<8;i++){
+                printf("descricao: %s\t",tecido[i].descricao);
+            }
+            printf("\n");
+            for(int i=0;i<8;i++){
+                printf("preco_metro: %.2f\t",tecido[i].preco_metro);
+            }
+            printf("\n");
+            for(int i=0;i<8;i++){
+                printf("qtd_estoque: %d\t\t",tecido[i].qtd_estoque);
+            }
+            printf("\n");
+        }
+        else if(opcao_relatorio==2){
+            for(int i=0;i<8;i++){
+                if(tecido[i].qtd_estoque<50){
+                    printf("codigo: %d\n",tecido[i].codigo);
+                    printf("descricao: %s\n",tecido[i].descricao);
+                    printf("preco metro: R$ %.2f\n",tecido[i].preco_metro);
+                    printf("qtd estoque: %d\n\n",tecido[i].qtd_estoque);
+                }
+            }
+        }
+        else{
+            for(int i=0;i<8;i++){
+                if(tecido[i].preco_metro<0.60){
+                    printf("codigo: %d\n",tecido[i].codigo);
+                    printf("descricao: %s\n",tecido[i].descricao);
+                    printf("preco metro: R$ %.2f\n",tecido[i].preco_metro);
+                    printf("qtd estoque: %d\n\n",tecido[i].qtd_estoque);
+                }
+            }
+        }
+        
+        printf("\ndigite s para sair\n");
+        scanf("%c",&sair);
+    }
+    
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+7. Suponha que você queira armazenar seus gastos mensais com água, energia elétrica e
+telefone, referentes ao ano passado. Faça um algoritmo que leia estes gastos e depois:
+mostre os meses em que houve mais gasto com água, luz e telefone e a média de gasto
+com cada categoria.
+
+
+
+8. Uma loja de calçados possui um cadastro de até 1000 peças de reposição em seu estoque.
+Para cada peça são armazenados os seguintes dados: código da peça; preço unitário;
+descrição da peça; e quantidade disponível em estoque. Você deve elaborar um programa
+para:
+a) Ler certa quantidade de peças para o cadastro. Considere que o código -999 encerra a
+entrada de dados;
+b) Exibir uma listagem das peças que possuem menos de X unidades, onde X é uma
+quantidade fornecida pelo usuário.
+
+
+
+9. Para ter seu projeto apreciado em um órgão de financiamento, um inventor deve
+preencher um formulário contendo os seguintes dados: nome do inventor e do projeto;
+breve descrição do seu invento; valor de financiamento solicitado; prazo de execução em
+meses. Sendo aprovado, o órgão financiador faz um cadastro destes dados, agregando um
+campo que indica se o prazo está ou não atrasado. Faça um algoritmo para ler os dados de
+50 projetos, e depois exibir:
+a) Uma listagem dos projetos com até 6 meses de prazo, contendo o nome e o prazo,
+incluindo o total financiado;
+b) Uma listagem dos projetos em atraso, contendo o nome e o inventor, incluindo o total
+financiado.
+
+
+
+
+10. Pesquise sobre registros aninhados, com structs dentro de structs
+
+
+//STRUCT DENTRO DE STRUCT
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct funcionario{
+    int matricula;
+    char nome[20];
+    int setor;
+};
+
+struct cliente{
+    char cpf[12];
+    char nome[30];
+    int idade;
+    int acompanhantes;
+    int vetor_dentro_struct[5];
+};
+
+struct quarto{
+    int camas;
+    int numero;
+    struct funcionario func[2];
+    struct cliente cli;
+};
+
+
+int main() {
+    struct quarto q[2];
+    
+    for(int i=0;i<2;i++){
+        printf("DADOS DO QUARTO\n");
+        printf("camas do quarto: ");
+        scanf("%d",&q[i].camas);
+        printf("numero do quarto: ");
+        scanf("%d",&q[i].numero);
+        
+        for(int f=0;f<2;f++){
+            printf("\nFUNCIONÁRIO [%d]\n",f+1);
+            printf("matricula: ");
+            scanf("%d",&q[i].func[f].matricula);
+            printf("nome: ");
+            getchar();
+            scanf("%20[^\n]",&q[i].func[f].nome);
+            printf("setor: ");
+            scanf("%d",&q[i].func[f].setor);
+        }
+        
+        printf("\nCLIENTE\n");
+        printf("cpf: ");
+        getchar();
+        gets(q[i].cli.cpf);
+        printf("nome: ");
+        getchar();
+        gets(q[i].cli.nome);
+        printf("idade: ");
+        scanf("%d",&q[i].cli.idade);
+        printf("acompanhantes: ");
+        scanf("%d",&q[i].cli.acompanhantes);
+        
+        for(int j=0;j<5;j++){
+            printf("vetor_dentro_struct [%d]: ",j);
+            scanf("%d",&q[i].cli.vetor_dentro_struct[j]);   
+        }
+        
+        printf("\n\n");
+    }
+    
+    printf("\n\n\nMOSTRANDO REGISTROS\n");
+    for(int i=0;i<2;i++){
+        printf("DADOS DO QUARTO\n");
+        printf("camas do quarto: %d\n",q[i].camas);
+        printf("numero do quarto: %d\n",q[i].numero);
+        
+        for(int f=0;f<2;f++){
+            printf("\nFUNCIONÁRIO %d\n",f+1);
+            printf("matricula: %d\n",q[i].func[f].matricula);
+            printf("nome: %s\n",q[i].func[f].nome);
+            printf("setor: %d\n",q[i].func[f].setor);
+        }
+        
+        printf("\nCLIENTE\n");
+        printf("cpf: %s\n",q[i].cli.cpf);
+        printf("nome: %s\n",q[i].cli.nome);
+        printf("idade: %d\n",q[i].cli.idade);
+        printf("acompanhantes: %d\n",q[i].cli.acompanhantes);
+        
+        for(int j=0;j<5;j++){
+            printf("vetor_dentro_struct [%d]: %d\n",j,q[i].cli.vetor_dentro_struct[j]);
+        }
+        
+        printf("\n\n");
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+
+//RETORNANDO STRUCT DE FUNÇÃO
+#include <stdio.h>
+
+struct gg{
+    int idade;
+    int nome;
+};
+
+
+struct gg teste(){
+    struct gg h;
+    h.idade = 56;
+    h.nome = 6;
+    return h;
+}
+
+int main()
+{
+    struct gg t;
+    
+    t=teste();
+
+    printf("%d\n",t.idade);
+    printf("%d",t.nome);
+    return 0;
+}
+
+

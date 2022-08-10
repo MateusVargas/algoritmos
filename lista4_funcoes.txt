@@ -1,0 +1,689 @@
+// Escreva uma funcao recursiva SomaSerie(i,j,k). Esta funcao devolve a soma da serie de
+// valores do intervalo [i,j], com incremento k.
+
+#include <stdio.h>
+
+void main(){
+    int i, j, k;
+    
+    printf("informe o intervalo: ");
+    scanf("%d %d",&i,&j);
+    
+    printf("informe o incremento: ");
+    scanf("%d",&k);
+    
+    printf("%d",soma_serie(i,j,k));
+}
+
+
+int soma_serie(i,j,k){
+    int soma=0, iterable;
+    
+    for(iterable=i;iterable<=j;iterable++){
+        soma+=iterable;
+    }
+    
+    return soma+k;
+}
+
+
+
+
+
+
+
+
+// Desenvolva um algoritmo que contenha uma função para
+// verificar se um número é positivo ou negativo. Caso seja
+// positivo, informe se é par ou impar
+
+
+#include <stdio.h>
+
+void verificar(){
+    int numero;
+    scanf("%d",&numero);
+    
+    if(numero>0){
+        printf("positivo\n");
+        if(numero%2==0){
+            printf("número é par");
+        }else{
+            printf("número é impar");
+        }
+    }
+    else if(numero==0){
+        printf("igual a zero");
+    }
+    else{
+        printf("negativo");
+    }
+}
+
+int main()
+{
+    verificar();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+// Escreva um programa que contenha uma função para apresentar o
+// quadrado de todos os números inteiros maiores que zero e menores que K
+// (recebido por parâmetro).
+
+#include <stdio.h>
+
+void quadrado(int x){
+    int i=1;
+    for(;i<x;i++){
+        printf("quadrado de %d: %d\n",i,i*i);
+    }   
+}
+
+int main(){
+    int k;
+    printf("informe o valor de K: ");
+    scanf("%d",&k);
+    
+    if(k>0){
+        quadrado(k);
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+// Escreva um programa que contenha uma função que receba
+// como parâmetro as 4 notas de um aluno e calcule a média. A
+// função deve retornar a média para o programa principal para
+// que seja apresentada na tela.
+
+#include <stdio.h>
+
+float calc_media(float n1, float n2, float n3, float n4){
+    float media = (n1+n2+n3+n4)/4;
+    return media;
+}
+
+int main(){
+    float n1,n2,n3,n4,media;
+    scanf("%f %f %f %f",&n1,&n2,&n3,&n4);
+    
+    media = calc_media(n1,n2,n3,n4);
+    
+    printf("media: %.2f",media);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+// Você foi contratado para desenvolver o novo sistema de uma locadora de automóveis. A
+// empresa possui três tipos de veículos disponíveis:
+// Hatch: R$50,00 por dia.
+// Premium: R$75,00 por dia.
+// Utilitário: R$ 85,00 por dia.
+// Desenvolva um algoritmo para cadastrar as vendas considerando o seguinte: Se o cliente aluga
+// um carro Premium ou Utilitário por 10 a 15 dias, terá 10% de desconto. Se alugar um carro
+// Hatch por 15 ou mais dias, terá 5%. Junto com o valor do carro, o sistema deve calcular o valor
+// do seguro a ser pago, de acordo com a seguinte tabela:
+// Hatch: R$100,00 por dia ou R$ 1200,00, se o aluguel for mais de 10 dias.
+// Premium: R$120,00 por dia, ou R$ 1800,00 se o aluguel for mais de 10 dias.
+// Utilitário: R$ 125,00 por dia, ou R$ 1850,00 se o aluguel for mais de 10 dias.
+// Por fim, o sistema deve verificar se o cliente deseja algum adicional. As opções são:
+// Tag pedágio: R$10,00 por dia.
+// Cadeira de bebê: R$80,00 fixo.
+// Ao fim de cada venda o sistema deve apresentar o custo total, detalhando o valor do carro, do
+// seguro e adicionais (se houverem). O sistema deve possibilitar fazer diversas vendas, e só
+// encerra quando o usuário solicitar.
+
+#include <stdio.h>
+
+int select_tipo_carro(){
+    int tipo_carro;
+    
+    printf("escolha o tipo do carro:\n");
+    printf("1- Hatch\n2- Premium\n3- Utilitário\n");
+    scanf("%d",&tipo_carro);
+        
+    while(tipo_carro !=1 && tipo_carro !=2 && tipo_carro !=3){
+        printf("\nopção inválida\n");
+        printf("escolha o tipo do carro:\n");
+        printf("1- Hatch\n2- Premium\n3- Utilitário\n");
+        scanf("%d",&tipo_carro);
+    }
+    
+    return tipo_carro;
+}
+
+int qtd_dias(){
+    int dias_aluguel;
+    
+    printf("\ninforme por quantos dias vai alugar: ");
+    scanf("%d",&dias_aluguel);
+        
+    while(dias_aluguel<0){
+        printf("\nopção inválida\n");
+        printf("informe por quantos dias vai alugar: ");
+        scanf("%d",&dias_aluguel);
+    }
+    
+    return dias_aluguel;
+}
+
+int select_adicional(){
+    int adicional;
+    
+    printf("\nadicional:\n");
+    printf("1- Tag pedágio\n2- Cadeira de bebê\n3- Tag pedágio e Cadeira de bebê\n4- Nenhum\n");
+    scanf("%d",&adicional);
+        
+    while(adicional !=1 && adicional !=2 && adicional !=3 && adicional !=4){
+        printf("\nopção inválida\n");
+        printf("escolha o tipo do carro:\n");
+        printf("1- Tag pedágioh\n2- Cadeira de bebê\n3- Nenhum\n");
+        scanf("%d",&adicional);
+    }
+    
+    return adicional;
+}
+
+float calc_adicional(int adicional, int dias_aluguel){
+    float total_adicionais=0;
+    
+    if(adicional==1){
+        total_adicionais = 10*dias_aluguel;
+    }
+    else if(adicional==2){
+        total_adicionais=80;
+    }
+    else if(adicional==3){
+        total_adicionais = 10*dias_aluguel + 80;
+    }
+    else{
+        total_adicionais = 0;
+    }
+    
+    return total_adicionais;
+}
+
+
+int main(){
+    char encerrar;
+    int tipo_carro, dias_aluguel, adicional;
+    float custo_total=0, total_carro=0, total_seguro=0, total_adicionais=0;
+    
+    do{
+        tipo_carro = select_tipo_carro();
+        dias_aluguel = qtd_dias();
+        adicional = select_adicional();
+        total_adicionais = calc_adicional(adicional,dias_aluguel);
+        
+        if(tipo_carro==1){
+            total_carro = 50*dias_aluguel;
+            
+            if(dias_aluguel>=15){
+                total_carro*=0.95;
+            }
+            
+            if(dias_aluguel>10){
+                total_seguro = 1200;
+            }
+            else{
+                total_seguro = 100*dias_aluguel;
+            } 
+        }
+        else if(tipo_carro==2){
+            total_carro = 75*dias_aluguel;
+            
+            if(dias_aluguel>=10 && dias_aluguel<=15){
+                total_carro*=0.90;
+            }
+            
+            if(dias_aluguel>10){
+                total_seguro = 1800;
+            }
+            else{
+                total_seguro = 120*dias_aluguel;
+            }
+        }
+        else{
+            total_carro = 85*dias_aluguel;
+            
+            if(dias_aluguel>=10 && dias_aluguel<=15){
+                total_carro*=0.90;
+            }
+            
+            if(dias_aluguel>10){
+                total_seguro = 1850;
+            }
+            else{
+                total_seguro = 125*dias_aluguel;
+            }
+        }
+        
+        
+        //custo_total sera a soma do total do carro, do seguro e adicionais
+        custo_total = total_carro+total_seguro+total_adicionais;
+        
+        printf("\ntotal da diária do carro: R$ %.2f",total_carro);
+        printf("\ntotal do seguro: R$ %.2f",total_seguro);
+        total_adicionais == 0 ? printf("\nnenhum adicional escolhido, total: R$%.2f",total_adicionais) : printf("\ntotal dos adicionais: R$ %.2f",total_adicionais);
+        printf("\n\nCUSTO TOTAL: R$ %.2f",custo_total);
+        
+        
+        printf("\n\n\n1-DESEJA CONTINUAR? N PARA ENCERRAR OU QUALQUER LETRA PRA CONTINUAR: ");
+        getchar();
+        scanf("%c",&encerrar);
+        
+    }while(encerrar!='n' && encerrar!='N');
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+//PROTÓTIPOS
+
+#include <stdio.h>
+
+void par(int num);
+void positivo();
+
+int main(){
+    positivo();
+    return 0;
+}
+
+void positivo(){
+    int num;
+    scanf("%d",&num);
+    
+    if(num>0){
+        par(num);
+    }
+    else if(num==0){
+        printf("igual a zero");
+    }
+    else{
+        printf("negativo");
+    }
+}
+
+void par(int num){
+    num%2==0 ? printf("par") : printf("impar");
+}
+
+
+////////////////////////////////////
+
+
+#include <stdio.h>
+
+float calc_media(float n1, float n2, float n3, float n4);
+
+int main(){
+    float n1,n2,n3,n4,media;
+    scanf("%f %f %f %f",&n1,&n2,&n3,&n4);
+    
+    media = calc_media(n1,n2,n3,n4);
+    
+    printf("media: %.2f",media);
+    
+    return 0;
+}
+
+
+float calc_media(float n1, float n2, float n3, float n4){
+    float media = (n1+n2+n3+n4)/4;
+    return media;
+}
+
+
+
+
+
+
+
+
+
+
+1. Desenvolva um algoritmo com uma função que recebe a idade de um nadador por parâmetro e
+apresenta sua categoria de acordo com a tabela abaixo:
+Idade Categoria
+5 a 7 anos Infantil A
+8 a 10 anos Infantil B
+11-13 anos Juvenil A
+14-17 anos Juvenil B
+Maiores de 18 anos (inclusive) Adulto
+
+#include <stdio.h>
+
+void categoria(int idade){
+    if(idade>=5 && idade<=7){
+        printf("Infantil A");
+    }
+    else if(idade>=8 && idade<=10){
+        printf("Infantil B");
+    }
+    else if(idade>=11 && idade<=13){
+        printf("Juvenil A");
+    }
+    else if(idade>13 && idade<18){
+        printf("Juvenil B");
+    }
+    else if(idade>=18){
+        printf("Adulto");
+    }
+    else{
+        printf("Nenhuma categoria");
+    }
+}
+
+int main(){
+    int idade;
+    
+    printf("informe a idade: ");
+    scanf("%d",&idade);
+    
+    categoria(idade);
+    
+    return 0;
+}
+
+
+
+
+
+
+2. Escrever uma função que leia 10 números inteiros e verifique quantos deles são ímpares.
+
+#include <stdio.h>
+#include <stdbool.h>
+
+bool funcc(int num){
+    if(num%2!=0){
+        return true;
+    }
+    return false;
+}
+
+int main(){
+    int num, cont=0;
+    
+    for(int i=0;i<10;i++){
+        scanf("%d",&num);
+        if(funcc(num)==true){
+            cont++;
+        }
+    }
+    
+    printf("total de impares: %d",cont);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+3. Desenvolva um algoritmo com uma função para receber três valores numéricos A, B e C, e trocá-los
+entre as variáveis de forma que, ao final, a variável A possua o maior valor e a variável C o menor.
+
+
+4. Faça um programa com uma função que recebe por parâmetro um número inteiro e retorna 1 caso
+seja maior que um valor inserido pelo usuário dentro da função e 0 em caso contrário.
+
+
+5. Desenvolva um algoritmo com uma função que recebe as três notas de um aluno por parâmetro e
+uma letra. Se a letra for A, deve-se calcular a média aritmética das três notas, se for P, calcula-se a
+média ponderada (pesos: 5, 3 e 2). O resultado deve ser apresentado na função principal. Se
+necessário, pesquise como encontrar a média ponderada de um conjunto de valores para resolver a
+questão.
+
+
+6. A prefeitura de uma cidade fez uma pesquisa entre os seus habitantes, coletando dados sobre o
+salário e número de filhos. Faça algoritmo com uma função que leia esses dados para um número
+não determinado de pessoas e apresente a média de salário da população, a média do número de
+filhos, o maior salário e o percentual de pessoas com salário até R$350,00.
+
+#include <stdio.h>
+
+void pesquisa(){
+    char continuar='s';
+    int i=0, num_filhos, soma_filhos=0, pessoas_salario_ate_350=0;
+    float salario, maior_salario=0, soma_salario=0, percentual, media_filhos, media_salario;
+    
+    while(continuar!='n'){
+        printf("informe o salario e numero de filhos: ");
+        scanf("%f %d",&salario,&num_filhos);
+        
+        i++;
+        soma_filhos+=num_filhos;
+        soma_salario+=salario;
+        if(i==1){
+            maior_salario=salario;
+        }
+        if(salario>maior_salario){
+            maior_salario=salario;
+        }
+        if(salario<=350){
+            pessoas_salario_ate_350++;
+        }
+        
+        printf("digite n para encerrar: ");
+        scanf(" %c",&continuar);
+    }
+    printf("%d",i);
+    media_salario=((float)soma_salario/i);
+    media_filhos=((float)soma_filhos/i);
+    percentual=(pessoas_salario_ate_350*100)/i;
+    
+    printf("media_filhos: %.2f\n",media_filhos);
+    printf("media_salario: %.2f\n",media_salario);
+    printf("percentual salario ate 350: %.2f%%",percentual);
+}
+
+int main(){
+    pesquisa();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+7. Escreva um programa que contenha uma função para calcular o desconto de um produto e outra
+função para calcular o valor total da venda. A primeira função deve receber como parâmetros o valor
+do produto e a porcentagem do desconto e retornar o novo preço do produto. A segunda função
+deve receber como parâmetro a quantidade e calcular o preço total já com o desconto. O programa
+deve apresentar o preço original do produto, o desconto e o valor total da venda.
+
+#include <stdio.h>
+
+float calc_desconto(float valor_produto,float valor_desconto){
+    float novo_preco;
+    novo_preco = valor_produto - (valor_produto*(valor_desconto/100));// ex: 100 - (100*(12/100))
+    return novo_preco;
+}
+
+float calc_total(int qtd, float valor_produto){
+    return qtd*valor_produto;
+}
+
+int main(){
+    int qtd;
+    float valor, desconto, valor_atualizado_com_desconto, total;
+    
+    printf("informe o preço: ");
+    scanf("%f",&valor);
+    
+    printf("informe a porcentagem do desconto: ");
+    scanf("%f",&desconto);
+    
+    printf("quantidade: ");
+    scanf("%d",&qtd);
+    
+    valor_atualizado_com_desconto = calc_desconto(valor,desconto);
+    total = calc_total(qtd,valor_atualizado_com_desconto);
+    
+    printf("preço original: %.2f\n",valor);
+    printf("desconto: %.2f\n",desconto);
+    printf("total: %.2f",total);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+8. Escreva uma função que recebe a idade de uma pessoa em anos, meses e dias e retorna essa idade
+expressa em dias. Leve em consideração que todos os meses possuem 30 dias e que a pessoa já
+comemorou aniversário no ano corrente.
+
+#include <stdio.h>
+
+int calc_dias(int anos, int meses, int dias){
+    int total_dias, idade;
+    total_dias = (anos*365)+(meses*30)+dias;
+    return total_dias;
+}
+
+int main(){
+    int idade, meses, dias;
+    
+    printf("idade em anos, meses e dias: ");
+    scanf("%d %d %d",&idade, &meses, &dias);
+    
+    printf("total de dias: %d",calc_dias(idade,meses,dias));
+    return 0;
+}
+
+
+
+
+
+
+
+
+9. Utilizando o conceito de protótipos, escreva um programa com 5 opções: 4 para realizar as
+operações matemáticas básicas, e 1 para encerrar o programa. Ex:
+1 – Adição
+2 – Subtração
+3 – Multiplicação
+4 – Divisão
+0 – Sair
+Implemente uma função para cada operação.
+
+#include <stdio.h>
+
+void soma(int a, int b);
+void subtracao(int a, int b);
+void multi(int a, int b);
+void dividir(int a, int b);
+
+int main(){
+    int num1, num2;
+    
+    scanf("%d %d",&num1,&num2);
+    
+    soma(num1,num2);
+    subtracao(num1,num2);
+    multi(num1,num2);
+    dividir(num1,num2);
+    
+    return 0;
+}
+
+
+void soma(int a, int b){
+    printf("%d + %d = %d\n",a,b,a+b);
+}
+
+void subtracao(int a, int b){
+    printf("%d - %d = %d\n",a,b,a-b);
+}
+
+void multi(int a, int b){
+    printf("%d X %d = %d\n",a,b,a*b);
+}
+
+void dividir(int a, int b){
+    printf("%d / %d = %.2f\n",a,b,(float)a/b);
+}
+
+
+
+
+
+
+
+
+
+10. O número 3025 possui a seguinte característica:
+a) 30 + 25 = 55.
+b) 55 * 55 = 3025.
+Desenvolva um algoritmo que verifica, através de uma função, e imprime todos os números de quatro
+algarismos (de 1000 até 9999) que apresentam tal característica.
+
+#include <stdio.h>
+
+void verifica(){
+    int parte_a, parte_b, soma=0, multi;
+    
+    for(int i=1000;i<=9999;i++){
+        parte_a = i/100;
+        parte_b = i%100;
+        soma=parte_a+parte_b;
+        multi=soma*soma;
+        if(multi == i){
+            printf("%d, %d + %d = %d, %d x %d = %d\n",i,parte_a,parte_b,soma,soma,soma,multi);
+        }
+    }
+}
+
+int main(){
+    verifica();
+    return 0;
+}
+
+
+
+

@@ -1,0 +1,161 @@
+1. Faça um algoritmo para calcular quantas ferraduras são necessárias para equipar todos os
+cavalos comprados para um haras.
+
+#include <stdio.h>
+
+int main(){
+    int cavalos_comprados, ferraduras;
+    
+    printf("informe a quantidade de cavalos comprados: ");
+    scanf("%d",&cavalos_comprados);
+    
+    ferraduras = cavalos_comprados * 4;
+    
+    printf("serão necessárias %d ferraduras.",ferraduras);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+2. A padaria Hotpão vende uma certa quantidade de pães franceses e uma quantidade de broas
+a cada dia. Cada pãozinho custa R$ 0,12 e a broa custa R$ 1,50. Ao final do dia, o dono quer
+saber quanto arrecadou com a venda dos pães e broas (juntos), e quanto deve guardar numa
+conta de poupança (10% do total arrecadado). Você foi contratado para fazer os cálculos
+para o dono. Com base nestes fatos, faça um algoritmo para ler as quantidades de pães e de
+broas, e depois calcular os dados solicitados.
+
+#include <stdio.h>
+
+#define preco_pao 0.12
+#define preco_broa 1.50
+
+int main(){
+    int qtd_paes, qtd_broas;
+    float total, valor_poupanca;
+    
+    printf("informe respectivamente as quantidades de pães e broas vendidas: ");
+    scanf("%d %d",&qtd_paes,&qtd_broas);
+    
+    total = (qtd_paes * preco_pao) + (qtd_broas * preco_broa);
+    valor_poupanca = total * 0.10;
+    
+    printf("total arrecadado: %.2f",total);
+    printf("\nvalor a ser guardado na poupança: %.2f",valor_poupanca);
+    
+    return 0; 
+}
+
+
+
+
+
+3. Escreva um algoritmo para ler o nome e a idade de uma pessoa, e exibir quantos dias de vida
+ela possui. Considere sempre anos completos, e que um ano possui 365 dias. Ex: uma pessoa
+com 19 anos possui 6935 dias de vida; veja um exemplo de saída: MARIA, VOCÊ JÁ
+VIVEU 6935 DIAS
+
+#include <stdio.h>
+
+int main(){
+    char nome[30];
+    int idade, dias;
+    
+    printf("informe seu nome: ");
+    gets(nome);
+    //scanf("%s",nome);
+    
+    printf("idade: ");
+    scanf("%d",&idade);
+    
+    dias = idade * 365;
+    
+    printf("%s VOCÊ JÁ VIVEU %d DIAS",nome,dias);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+4. Um motorista deseja colocar no seu tanque X reais de gasolina. Escreva um algoritmo para
+ler o preço do litro da gasolina e o valor do pagamento, e exibir quantos litros ele conseguiu
+colocar no tanque.
+
+#include <stdio.h>
+
+int main(){
+    float preco_litro, valor, litros;
+    
+    printf("informe o preço da gasolina: ");
+    scanf("%f",&preco_litro);
+    
+    printf("quantidade em dinheiro: ");
+    scanf("%f",&valor);
+    
+    litros = valor / preco_litro;
+    
+    printf("voce conseguira colocar %.2f litros de gasolina.",litros);
+    
+    return 0;
+}
+
+
+
+
+
+
+5. O restaurante a quilo Bem-Bão cobra R$12,00 por cada quilo de refeição. Escreva um
+algoritmo que leia o peso do prato montado pelo cliente (em quilos) e imprima o valor a
+pagar. Assuma que a balança já desconte o peso do prato.
+
+#include <stdio.h>
+
+void main(){
+    const int kg_refeicao = 12;
+    float peso, total;
+    
+    printf("informe o peso do prato em KG:");
+    scanf("%f",&peso);
+    
+    total = peso * kg_refeicao;
+    
+    printf("total a pagar R$: %.2f",total);
+}
+
+
+
+
+
+
+6. Uma fábrica de camisetas produz os tamanhos pequeno, médio e grande, cada uma sendo
+vendida respectivamente por 10, 12 e 15 reais. Construa um algoritmo em que o usuário
+forneça a quantidade de camisetas pequenas, médias e grandes referentes a uma venda, e a
+máquina informe quanto será o valor arrecadado. 
+
+#include <stdio.h>
+
+#define pequena 10
+#define media 12
+#define grande 15
+
+int main(){
+    int qtd_pqn, qtd_media, qtd_grande, total;
+    
+    printf("digite a quantidade vendida de camisas pequenas, medias e grandes respectivamente: ");
+    scanf("%d %d %d",&qtd_pqn, &qtd_media, &qtd_grande);
+    
+    total = qtd_pqn * pequena + qtd_media * media + qtd_grande * grande;
+    printf("total em vendas: R$ %d",total);
+    
+    return 0;
+}
+

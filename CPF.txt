@@ -1,0 +1,117 @@
+// O número do Cadastro de Pessoa Física (CPF) é formado por nove algarismos (999.999.999), mais
+// dois dígitos verificadores (-99). Os valores destes dígitos verificadores são definidos a partir dos
+// nove primeiros. Considerando o formato abcdefghi-jk, onde cada letra representa um dígito,
+// desenvolver um algoritmo que solicita ao usuário um número de CPF sem os dígitos verificadores e
+// define-os automaticamente. Para isso, considere:
+// ● Para encontrar o primeiro dígito verificador (j):
+// o Realizar o somatório de 10a + 9b + 8c + 7d + 6e + 5f + 4g + 3h + 2i;
+// o Encontrar o resto da divisão da soma por 11;
+// o Caso o resto da divisão seja igual a zero ou um, o dígito verificador deve ser zero,
+// caso contrário deve ser o resultado da subtração de onze menos o resto.
+// ● Para encontrar o primeiro dígito verificador (k):
+// o Realizar o somatório de 11a + 10b + 9c + 8d + 7e + 6f + 5g + 4h + 3i + 2j;
+// o Encontrar o resto da divisão da soma por 11;
+// o Caso o resto da divisão seja igual a zero ou um, o dígito verificador deve ser zero,
+// caso contrário deve ser o resultado da subtração de onze menos o resto.
+// ATENÇÃO: O programa deve solicitar um ÚNICO número de CPF. Ou seja, o usuário deve digitar os
+// nove algarismos e então pressionar a tecla Enter para submeter a entrada. Programas Que Solicitam
+// um algarismo de cada vez serão DESCONSIDERADOS
+
+#include <stdio.h>
+
+int main() {
+    double cpf;
+    long int j=100000000, cpf_aux;
+    int soma_primeiro_digito=0, soma_segundo_digito=0, resto=0, resultado_int_divisao=0, primeiro_digito, segundo_digito, resto_divisao_num;
+    float multi=0;
+    
+    printf("cpf: ");
+    scanf("%lf",&cpf); //se digitar 045334765 vai valer 45334765 o 0 é ignorado, já com long int a leitura retorna um numero desconhecido por causa do zero na frente
+    
+    cpf_aux = (long int)cpf;
+    
+    for(int i=10;i>=2;i--){
+        
+        //se o cpf digitado for menor que j e se tiver na primeira iteração, (i=10)
+        //não multiplica o zero pelo 10, apenas a soma fica com zero e divide o j por 10,
+        //porque estava dando erro ao multiplicar, pois um long int que começa com zero é 
+        //considerado um numero octal e a leitura não funciona bem, com o double não acontece o erro por isso o if
+        
+        if(cpf_aux < j && i==10){ //cpf apenas será menor que j se ele começar com zero
+            soma_primeiro_digito+=0;
+            j=j/10;
+        }
+        
+        else{
+            resultado_int_divisao = cpf_aux/j;
+            resto = cpf_aux%j;
+                
+            multi = resultado_int_divisao*i;
+            soma_primeiro_digito+=multi;
+                
+            //printf("result int %d\n",resultado_int_divisao);
+            //printf("resto %d\n",resto);
+                 
+            cpf_aux = resto;
+            
+            j=j/10;
+        }
+    }
+    
+    resto_divisao_num = soma_primeiro_digito%11;
+    
+    if(resto_divisao_num == 0 || resto_divisao_num == 1){
+        primeiro_digito=0;
+    }
+    else{
+        primeiro_digito = 11 - resto_divisao_num;
+    }
+    
+
+    ///segundo dígito
+    
+    j=100000000;
+    resto=0;
+    multi=0;
+    resultado_int_divisao=0;
+    cpf_aux=(long int)cpf;
+    
+    //variaveis voltam aos valores originais
+    
+    for(int i=11;i>=2;i--){
+        if(i==2){
+            soma_segundo_digito += primeiro_digito*i;
+            break;
+        }
+        
+        resultado_int_divisao = cpf_aux / j;
+        resto = cpf_aux % j;
+            
+        multi = resultado_int_divisao*i;
+        soma_segundo_digito+=multi;
+        
+        cpf_aux = resto;
+            
+        j=j/10;
+    }
+    
+    resto_divisao_num = soma_segundo_digito%11;
+    
+    if(resto_divisao_num == 0 || resto_divisao_num == 1){
+        segundo_digito=0;
+    }
+    else{
+        segundo_digito = 11 - resto_divisao_num;
+    }
+    
+    j=100000000;
+        
+    printf("primeiro digito: %d\n",primeiro_digito);
+    printf("segundo digito: %d\n",segundo_digito);
+    
+    cpf < j ? printf("CPF FINAL: 0%.0lf-%d%d",cpf,primeiro_digito,segundo_digito) : printf("CPF FINAL: %.0lf-%d%d",cpf,primeiro_digito,segundo_digito);
+    //se o cpf começar com zero o zero será ingnorado pelo double, por isso acrescenta um 0 no print
+    
+    return 0;
+}
+

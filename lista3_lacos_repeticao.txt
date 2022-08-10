@@ -1,0 +1,899 @@
+//Mostrar na tela todos os números inteiros positivos pares
+//menores que 10.
+
+#include <stdio.h>
+
+void main(){
+    int i = 1;
+    
+    while(i < 10){
+        if(i % 2 == 0){
+            printf("%d\n",i);
+        }
+        i++;
+    }
+}
+
+
+/////////////////////////
+
+//Mostrar na tela todos os números inteiros positivos pares
+//menores que 10.
+
+#include <stdio.h>
+
+void main(){
+    int i = 1;
+    
+    do{
+        if(i%2==0){
+            printf("%d\n",i);
+        }
+        i++;
+    }while(i < 10);
+}
+
+
+
+
+
+
+
+
+// Desenvolver um programa que leia um número inteiro
+// positivo e apresente a tabuada de multiplicação desse
+// número.
+
+#include <stdio.h>
+
+int main(){
+    int numero, i = 0, j = 0;
+    
+    printf("tabuada do número: ");
+    scanf("%d",&numero);
+    
+    printf("\nwhile:\n");
+    
+    while(i <= 10){
+        printf("%d X %d = %d\n",numero, i, numero*i);
+        i++;
+    }
+    
+    printf("\n\ndo while:\n");
+    
+    do{
+        printf("%d X %d = %d\n",numero,j,numero*j);
+        j++;
+    }while(j <= 10);
+    
+    printf("\nfor:\n");
+    
+    j = 0;
+    
+    for(j=0;j<=10;j++){
+        printf("%d x %d = %d\n",numero,j,numero*j);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+// • Elaborar um programa que leia um valor inteiro positivo para
+// a base e um para o expoente. Depois, sem utilizar a função
+// POW (), resolva este cálculo de potência.
+// – Enquanto (while)
+// – Repita (do while)
+// – Para (for)
+
+#include <stdio.h>
+
+int main(){
+    int base, expoente, i=0;
+    float potencia = 1;
+    
+    printf("informe a base e o expoente: ");
+    scanf("%d %d",&base,&expoente);
+    
+    //potencia = base;
+    
+    // for(int i=0; i<expoente; i++){
+    //     potencia *= base;
+    // }
+    
+    while(i < expoente){
+        potencia *= base;
+        i++;
+    }
+    printf("%.2f",potencia);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+1. Criar um programa para apresentar o quadrado dos números inteiros de 15 a 100.
+
+#include <stdio.h>
+
+int main(){
+    
+    for(int i=15;i<=100;i++){
+        printf("QUADRADO DE %d = %d\n",i,i*i);
+    }
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+2. Fazer um algoritmo que leia duas notas para cada um dos vinte alunos de uma turma e escreva a média
+aritmética de cada aluno.
+
+#include <stdio.h>
+
+void main(){
+    float nota1, nota2, media;
+    
+    for(int i=1;i<=20;i++){
+        //float nota1, nota2, media;
+        printf("informe a nota 1 do ALUNO %d: ",i);
+        scanf("%f",&nota1);
+            
+        printf("informe a nota 2 do ALUNO %d: ",i);
+        scanf("%f",&nota2);
+            
+        media = (nota1 + nota2)/2;
+        
+        printf("MÉDIA DO ALUNO %d: %.2f\n\n",i,media);
+    }
+}
+
+
+
+
+
+
+
+3. Desenvolver um programa que apresente todos os números divisíveis por 4 que sejam menores que 200.
+
+#include <stdio.h>
+
+int main(){
+    for(int i=0;i<=200;i++){
+        if(i%4==0){
+            printf("%d é divisível por 4\n",i);
+        }
+    }
+}
+
+
+
+
+
+4. Apresentar os resultados das potências de 3, variando do expoente 0 até o expoente 15.
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+    
+    // for(int i=0;i<=15;i++){
+    //     printf("3 na %d = %.2f\n",i,pow(3,i));
+    // }
+    
+    //OUTRA FORMA
+    
+    for(int i=0;i<=15;i++){
+        int potencia = 1;
+        for(int j=0;j<i;j++){
+            potencia *= 3;
+        }
+        printf("3 na %d = %d\n",i,potencia);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+5. Ler diversos números e mostrar quantos deles são ímpares. O valor -999 é o código para fim de entrada.
+
+#include <stdio.h>
+
+int main(){
+    int num, total_impares = 0;
+        
+    while(num != -999){
+        printf("digite um número: ");
+        scanf("%d",&num);
+        
+        if(num % 2 != 0){
+            total_impares++;
+        }
+    }
+    
+    printf("total de impares: %d",total_impares);
+    
+    return 0;
+}
+
+
+
+
+
+
+6. Fazer um algoritmo que leia diversos números e mostre quantas vezes o número 10 foi digitado. O
+programa deve parar quando o usuário digitar 0.
+
+#include <stdio.h>
+
+int main(){
+    int num, qtd_10 = 0;
+    
+    do{
+        scanf("%d",&num);
+        
+        if(num == 10){
+            qtd_10++;
+        }
+    }while(num != 0);
+    
+    printf("vezes que o 10 foi digitado: %d",qtd_10);
+    
+    return 0;
+}
+
+
+
+
+
+
+7. Ler informações sobre 10 pessoas de um grupo. Para cada pessoa deve ser lida a altura e o sexo. Fazer um
+algoritmo que calcule e mostre:
+a) A maior e a menor altura do grupo;
+b) A média das alturas das mulheres;
+c) A média das alturas de todos do grupo.
+
+#include <stdio.h>
+
+int main(){
+    float altura, maior_altura, menor_altura, soma_altura_mulheres=0, soma_altura_todos=0, media_altura_mulheres, media_altura_todos;
+    int contador_mulheres = 0;
+    char sexo;
+    
+    for(int i=0;i<10;i++){
+        printf("informe a altura: ");
+        scanf("%f",&altura);
+        
+        printf("informe o sexo: ");
+        getchar();
+        scanf("%c",&sexo);
+        
+        printf("\n");
+        
+        soma_altura_todos+=altura;
+        
+        if(i==0){
+            maior_altura = altura;
+            menor_altura = altura;
+        }
+        
+        if(altura > maior_altura){
+            maior_altura = altura;
+        }
+        
+        if(altura < menor_altura){
+            menor_altura = altura;
+        }
+        
+        if(sexo == 'f'){
+            soma_altura_mulheres+=altura;
+            contador_mulheres++;
+        }
+        
+    }
+    
+    media_altura_mulheres = soma_altura_mulheres/contador_mulheres;
+    media_altura_todos = soma_altura_todos/10;
+    
+    printf("maior altura: %.2f\n",maior_altura);
+    printf("menor altura: %.2f\n",menor_altura);
+    printf("media altura mulheres: %.2f\n",media_altura_mulheres);
+    printf("media altura de todos: %.2f\n",media_altura_todos);
+    
+    return 0;
+}
+
+
+////COM WHILE
+
+
+
+#include <stdio.h>
+
+int main(){
+    float altura, maior_altura, menor_altura, soma_altura_mulheres=0,soma_altura_todos=0, media_altura_todos, media_altura_mulheres;
+    char sexo, continuar='s';
+    int i=0, contador_mulher=0;
+    
+    do{
+        printf("altura: ");
+        scanf("%f",&altura);
+        
+        while(altura > 2.5 || altura <= 0){
+            printf("informe a altura denovo: ");
+            scanf("%f",&altura);
+        }
+        
+        printf("sexo: ");
+        getchar();
+        scanf("%c",&sexo);
+        
+        while(sexo != 'm' && sexo != 'f'){
+            printf("informe sexo denovo: ");
+            getchar();
+            scanf("%c",&sexo);
+        }
+        
+        if(i==0){
+            maior_altura = altura;
+            menor_altura = altura;
+        }
+        if(altura > maior_altura){
+            maior_altura=altura;
+        }
+        if(altura < menor_altura){
+            menor_altura=altura;
+        }
+        
+        if(sexo=='f'){
+            soma_altura_mulheres+=altura;
+            contador_mulher++;
+        }
+        
+        soma_altura_todos+=altura;
+        
+        i++;
+        
+        printf("deseja continuar: ");
+        getchar();
+        scanf("%c",&continuar);
+        
+    }while(continuar != 'n');
+    
+    media_altura_mulheres = soma_altura_mulheres/contador_mulher;
+    media_altura_todos = soma_altura_todos/i;
+    
+    printf("maior altura: %.2f\n",maior_altura);
+    printf("menor altura: %.2f\n",menor_altura);
+    printf("média altura mulheres: %.2f\n",media_altura_mulheres);
+    printf("média altura todos: %.2f\n",media_altura_todos);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+8. Elaborar um programa que apresente os números da série Fibonacci até o décimo quinto termo. A série
+Fibonacci é iniciada por 0, 1. Os próximos termos são resultados das somas de seus 2 antecessores.
+
+#include <stdio.h>
+
+int main(){
+    // int primeiro=1,segundo=0,soma=0;
+    
+    // for(int i=0;i<15;i++){
+    //     if(i<=1){
+    //         soma=i;
+    //     }
+    //     else{
+    //         soma = primeiro+segundo;
+    //         primeiro=segundo;
+    //         segundo=soma;
+    //     }
+    //     printf("%d\n",soma);
+    // }
+    
+    //OUTRA FORMA
+    
+    // int ultimo=1, penultimo=0, temp;
+    
+    // for(int i=1;i<15;i++){
+    //     printf("%d\n",ultimo+penultimo);
+        
+    //     temp = penultimo;
+    //     penultimo = ultimo;
+    //     ultimo = ultimo+temp;
+    // }
+    
+    
+    //OUTRA FORMA
+    
+    int a=0, b=1, r, i=2;
+    
+    while(i<15){
+        r=a+b;
+        a=b;
+        b=r;
+        
+        i++;
+        printf("%d\n",r);
+    }
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+9. Escreva um algoritmo que informe quais números inteiros que divididos por 11 tem resto igual a 5, no
+intervalo de 1000 a 1999.
+
+#include <stdio.h>
+
+int main(){
+    for(int i=1000;i<=1999;i++){
+        if(i%11==5){
+            printf("%d dividido por 11 tem resto = 5\n",i);
+        }  
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+
+10. Faça um algoritmo para que um usuário adivinhe um número informado por outro. Inicialmente um
+usuário fornece um número para o algoritmo, e depois o outro usuário deve informar números até
+acertar (obviamente o segundo usuário não tem acesso a qual número foi digitado pelo primeiro usuário).
+Para ajudá-lo a descobrir, a cada tentativa o computador deve exibir uma mensagem do tipo “O número é
+menor” quando o número do segundo usuário for maior que o do primeiro e uma mensagem do tipo “O
+número é maior” quando o segundo usuário digitar um número menor. Ao acertar, o programa de
+mostrar uma mensagem apropriada e também mostrar o número de tentativas utilizadas.
+
+#include <stdio.h>
+
+int main(){
+    int numero_certo, numero_tentativa, tentativas=0;
+    
+    printf("numero: ");
+    scanf("%d",&numero_certo);
+    
+    system("clear");
+    
+    do{
+        printf("tente acertar o número: ");
+        scanf("%d",&numero_tentativa);
+        
+        if(numero_tentativa > numero_certo){
+            printf("\to número é menor\n");
+        }
+        else{
+            printf("\to número é maior\n");
+        }
+        
+        tentativas++;
+    }while(numero_certo != numero_tentativa);
+    
+    printf("acertou!! na %d° tentativa.",tentativas);
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+11. Elaborar um programa que efetue o cálculo e no final apresente o somatório do número de grãos de trigo
+que se pode obter num tabuleiro de xadrez, obedecendo a seguinte regra: colocar um grão de trigo na
+primeira casa e nas casas seguintes o dobro da casa anterior. Assim, na primeira casa coloca-se 1 grão, na
+segunda casa colocam-se 2 grãos (nesse momento tem-se 3 grãos), na terceira colocam-se 4 grãos (nesse
+momento tem-se 7 grãos) até atingir todas as 64 casas do tabuleiro. O resultado é maior ou menor do que
+você esperava?
+
+#include <stdio.h>
+
+void main(){
+    int qtd_graos=0;
+    
+    for(int i=1;i<=64;i++){
+        if(i==1){
+            qtd_graos=1;
+        }
+        else{
+            qtd_graos+=(i-1)*2;
+        }
+    }
+    
+    printf("total de grãos: %d",qtd_graos);
+
+    // long double qtd_graos=1,inicio=1;
+    // for(int i=1;i<=4;i++){
+    //     inicio = inicio*2;
+    //     qtd_graos+=inicio;
+    // }
+    // printf("total de grãos: %Lf",qtd_graos);
+}
+
+
+
+
+
+
+
+12. Elaborar um programa que efetue a leitura sucessiva de valores numéricos e apresente no final o
+somatório, a média e o total de valores lidos. O programa deve fazer as leituras dos valores enquanto o
+usuário estiver fornecendo valores positivos. Ou seja, o programa deve parar quando o usuário entrar
+com um valor negativo.
+
+#include <stdio.h>
+
+int main(){
+    float num, soma_valores=0, media_valores;
+    int contador_valores=0;
+    
+    printf("número: ");
+    scanf("%f",&num);
+    
+    while(num>=0){
+        contador_valores++;
+        soma_valores+=num;
+        
+        printf("número: ");
+        scanf("%f",&num);
+    }
+    
+    media_valores = soma_valores/contador_valores;
+    
+    printf("total de valores lidos: %d\n",contador_valores);
+    printf("soma valores: %.2f\n",soma_valores);
+    printf("media valores: %.2f\n",media_valores);
+    
+    
+    return 0;
+}
+
+
+
+
+//////// COM FOR
+
+#include <stdio.h>
+
+int main()
+{
+    int num=0, cont=0, soma=0;
+    float media;
+    
+    for(soma=0;num>=0;){
+        printf("num:");
+        scanf("%d",&num);
+        
+        if(num<0) break;
+        
+        soma+=num;
+        cont++;
+    }
+    media = soma/cont;
+    printf("%.2f",media);
+}
+
+
+
+
+
+
+
+13. Elaborar um programa que leia um número inteiro positivo e apresente o fatorial deste número.
+
+#include <stdio.h>
+
+int main(){
+    int num;
+    float fatorial = 1;
+    
+    printf("numero: ");
+    scanf("%d",&num);
+    
+    for(int i=num;i>=1;i--){
+        fatorial *= i;
+    }
+    
+    printf("%.2f",fatorial);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+14. Desenvolva um algoritmo que efetue a leitura de valores positivos inteiros até que um valor negativo seja
+informado. Ao final, o programa deve apresentar o maior e menor valor.
+
+#include <stdio.h>
+
+void main(){
+    int maior=0, menor, num;
+    
+    while(num >= 0){
+        scanf("%d",&num);
+        
+        if(num > maior){
+            maior = num;
+        }
+        if(num >= 0 && num < menor){
+            menor = num;
+        }
+    }
+    
+    printf("\nmaior numero: %d",maior);
+    printf("\nmenor numero: %d",menor);
+}
+
+
+
+
+
+
+
+15. Fazer um algoritmo que leia números inteiros ate que seja informado zero, o qual deve ser
+desconsiderado e apos escreva quantos números informados são negativos, e a média aritmética dos
+números maiores que zero.
+
+#include <stdio.h>
+
+int main(){
+    int cont_negativos=0, num, cont_positivos=0;
+    float media, soma_positivos=0;
+    
+    printf("numero: ");
+    scanf("%d",&num);
+        
+    while(num!=0){
+        if(num<0){
+            cont_negativos++;
+        }
+        else if(num>0){
+            soma_positivos+=num;
+            cont_positivos++;
+        }
+        printf("numero: ");
+        scanf("%d",&num);
+    }
+    
+    media = soma_positivos/cont_positivos;
+    
+    printf("total de negativos:%d\n",cont_negativos);
+    printf("media dos positivos:%.2f",media);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+16. Fazer um algoritmo que leia um número inteiro e mostre uma mensagem dizendo se é primo ou não.
+
+#include <stdio.h>
+
+void main(){
+    int num, divisores=0;
+    scanf("%d",&num);
+    
+    for(int i=1;i<=num;i++){
+        if(num%i==0){
+            divisores++;
+        }
+    }
+    
+    divisores <= 2 ? printf("%d é primo",num) : printf("%d não é primo",num);
+}
+
+
+
+
+
+
+17. Sabe-se que uma aplicação financeira paga 5% de juros ao mês, e o aplicador retira (saca) mensalmente
+200,00. Fazer um algoritmo que leia o valor inicial aplicado e calcule em quantos meses o saldo será
+insuficiente para sacar 200,00 e qual este saldo. Ex: lê saldo inicial: 800,00; escreve: 5 meses,
+saldo=115,89.
+Mês 0 1 2 3 4 5
+
+Saldo (ant) + 5% 840,00 672,00 495,60 310,38 115,89
+Saque 200,00 200,00 200,00 200,00
+Saldo 800,00 640,00 472,00 295,60 110,38
+
+#include <stdio.h>
+
+#define saque 200
+#define juros 1.05
+
+int main(){
+    float saldo;
+    int meses = 0;
+    
+    printf("informe o saldo: ");
+    scanf("%f",&saldo);
+    
+    while(saldo > 0){
+        saldo = saldo * juros;
+        
+        if(saldo <= 200){
+            meses++;
+            break;
+        }
+        
+        saldo -= saque;
+        
+        meses++;
+    }
+    
+    printf("%d meses, saldo = %.2f",meses,saldo);
+    
+    
+    return 0;
+}
+
+
+/////////// OUTRA FORMA //////////////////
+
+
+#include <stdio.h>
+
+#define saque 200
+#define juros 1.05
+
+int main(){
+    float saldo;
+    int meses = 0;
+    
+    printf("informe o saldo: ");
+    scanf("%f",&saldo);
+    
+    saldo = saldo*juros;
+    meses++;
+    
+    while(saldo >= 200){
+        saldo -= saque;
+        meses++;
+        saldo*=juros;
+    }
+    
+    printf("%d meses, saldo = %.2f",meses,saldo);
+    
+    return 0;
+}
+
+////////////// OUTRA FORMA /////////////////
+
+#include <stdio.h>
+
+#define saque 200
+#define juros 1.05
+
+int main(){
+    float saldo, saldo_anterior;
+    int meses = 0;
+    
+    printf("informe o saldo: ");
+    scanf("%f",&saldo);//800
+    
+    saldo_anterior = saldo; //saldo_anterior = 800
+    
+    while(saldo_anterior >= 200){
+        saldo_anterior = saldo * juros; 
+        //loop 1,800*1.05=840, 
+        //loop 2,640*1.05=672, 
+        //loop 3,472*1.05=495, 
+        //loop 4,295*1.05=310, 
+        //loop 5,110*1.05=115
+        
+        saldo = saldo_anterior - saque; 
+        //loop 1, saldo = 840-200=640, 
+        //loop 2, saldo = 672-200=472, 
+        //loop 3, saldo = 495-200=295, 
+        //loop 4, saldo = 310-200=110, 
+        //loop 5, saldo = 115-200 = -85
+        
+        printf("saldo apos rendimento e saque: R$ %.2f\n",saldo_anterior); 
+        //loop 1, mostra 840, 
+        //loop 2, mostra 672, 
+        //loop 3, mostra 495, 
+        //loop 4, mostra 310, 
+        //loop 5, mostra 115
+        
+        meses++;
+        //loop 1 = 1, 
+        //loop 2 = 2, 
+        //loop 3 = 3, 
+        //loop 4 = 4,
+        //loop 5 = 5,
+        
+        //ao final do loop 1: saldo_anterior = 840, saldo = 640, meses = 1
+        //ao final do loop 2: saldo_anterior = 840, saldo = 640, meses = 1
+    }
+    
+    printf("em %d meses não será possivel sacar R$ 200,00\n",meses);
+    printf("saldo daqui a %d meses: R$ %.2f",meses,saldo_anterior);
+    
+    return 0;
+}
+
+
+
+*questão 17 só suporta até saldo até 3999, apartir de 4000 entra em loop infinito, o certo é validar isso pra não acontecer
+
+
+
+
+
+
+
+
+/////////////////////// SEQUENCIA TETRANACCI
+
+#include <stdio.h>
+
+int main(){
+    int primeiro=0, segundo=0, terceiro=0, quarto=1,soma=0;
+    
+    for(int i=1;i<20;i++){
+        printf("%d\n",soma);//0
+        int t1 = primeiro;
+        int t2 = segundo;
+        int t3 = terceiro;
+        int t4 = quarto;
+
+        
+        soma=primeiro+segundo+terceiro+quarto;//1
+        primeiro=soma;//1
+        segundo=t1;//0
+        terceiro=t2;
+        quarto=t3;//0
+    }
+    
+    return 0;
+}

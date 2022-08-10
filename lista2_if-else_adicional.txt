@@ -1,0 +1,160 @@
+Exercícios adicionais: desvios condicionais.
+1. Desenvolva um algoritmo que solicite um valor positivo ou negativo 
+para o usuário e apresente o valor sempre positivo.
+
+#include <stdio.h>
+
+void main(){
+    int num;
+    
+    printf("insira um número: ");
+    scanf("%d",&num);
+    
+    num = num < 0 ? num *= -1 : num; //ternario
+    
+    printf("%d",num);
+}
+
+
+
+
+
+
+2. Construa um programa para solicitar o sexo da pessoa e depois 
+apresentar a mensagem: “Prezado Senhor”, para homens e a mensagem 
+“Prezada Senhora”, para mulheres.
+Juntamente com isso, apresente uma mensagem de boas-vindas.
+
+#include <stdio.h>
+
+int main(){
+    char sexo;
+    
+    printf("informe o sexo: ");
+    scanf("%c",&sexo);
+    
+    if(sexo == 'm'){
+        printf("Olá Prezado Senhor seja bem-vindo");
+    }
+    else if(sexo == 'f'){
+        printf("Olá Prezada Senhora seja bem-vinda");
+    }
+    else{
+        printf("sexo inválido");
+    }
+    return 0;
+}
+
+
+
+
+
+3. Faça um algoritmo que leia o sexo e o estado civil de uma pessoa. 
+Caso sexo seja “F” e estado civil seja “CASADO”, solicitar o tempo de 
+casada (anos). As possibilidades de estado civil são:
+a. Solteiro
+b. Casado
+c. Viúvo
+d. Desquitado
+
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+void main(){
+    // char sexo, sexo_toupper, estado_civil[15];
+    // int tempo_de_casada;
+    
+    // printf("informe o sexo: ");
+    // scanf("%c",&sexo);
+    
+    // printf("estado civil: ");
+    // scanf("%s",estado_civil);
+    
+    // sexo_toupper = toupper(sexo);
+    
+    // if(sexo_toupper == 'F' && strcmp(estado_civil,"CASADO") == 0){
+    //     printf("tempo de casada(anos): ");
+    //     scanf("%d",&tempo_de_casada);
+        
+    //     printf("tempo_de_casada: %d",tempo_de_casada);
+    // }
+    // printf("sexo: %c, estado_civil: %s",sexo_toupper,estado_civil);
+    
+    
+    //FORMA 2
+    char sexo, estado_civil;
+    int tempo_de_casada;
+    
+    printf("informe seu sexo: ");
+    scanf("%c",&sexo);
+    
+    printf("estado civil:");
+    printf("\na. Solteiro");
+    printf("\nb. Casado");
+    printf("\nc. Viúvo");
+    printf("\nd. Desquitado");
+    
+    printf("\n\ninforme o estado civil: ");
+    getchar();
+    scanf("%c",&estado_civil);
+    
+    if(sexo == 'f' && estado_civil == 'b'){
+        printf("tempo_de_casada: ");
+        scanf("%d",&tempo_de_casada);
+        printf("\ntempo_de_casada: %d anos",tempo_de_casada);
+    }
+    
+    printf("\nsexo: %c, estado_civil: %c",sexo,estado_civil);
+    
+}
+
+
+
+
+
+
+4. Desenvolva um algoritmo que leia o valor a ser pago por um produto, 
+considerando o preço normal de etiqueta e a escolha da condição de 
+pagamento. Para realizar o cálculo, utilize os códigos a seguir 
+referentes à condição de pagamento escolhida pelo cliente.
+Código Condição de pagamento
+a. À vista em dinheiro ou cheque, recebe 10% de desconto.
+b. À vista no cartão de crédito, recebe 15% de desconto.
+c. Em duas vezes, preço normal de etiqueta mais juros de 10%.
+
+#include <stdio.h>
+
+int main(){
+    float preco, total;
+    char condicao_pagamento;
+    
+    printf("digite o preço: ");
+    scanf("%f",&preco);
+    
+    printf("\ncondição de pagamento: ");
+    printf("\na. À vista em dinheiro ou cheque, recebe 10 por cento de desconto.");
+    printf("\nb. À vista no cartão de crédito, recebe 15 por cento de desconto.");
+    printf("\nc. Em duas vezes, preço normal de etiqueta mais juros de 10 por cento");
+    
+    printf("\n\ndigite a condição de pagamento: ");
+    getchar();//deve-se usar para ler char, pois limpa o buffer
+    scanf("%c",&condicao_pagamento);
+    
+    if(condicao_pagamento == 'a'){
+        total = preco * 0.90;
+        printf("valor a ser pago: %.2f",total);
+    }
+    else if(condicao_pagamento == 'b'){
+        total = preco * 0.85;
+        printf("valor a ser pago: %.2f",total);
+    }
+    else if(condicao_pagamento == 'c'){
+        total = preco * 1.10;
+        printf("valor a ser pago: %.2f",total);
+    }
+    else{
+        printf("condição invalida");
+    }
+}
+

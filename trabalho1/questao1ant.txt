@@ -1,0 +1,228 @@
+#include <stdio.h>
+
+int main(){
+    int numero_atual, num_anterior, num1_intervalo, num2_intervalo, calc_diferenca=0, diferenca_intervalo, i=0;
+    
+    printf("número ou -999: ");
+    scanf("%d",&numero_atual);
+    
+    
+    /*
+        na primeira iteração o num_anterior, maior_num_intervalo, menor_num_intervalo
+        serão serão iguais ao numero_atual, que é o primeiro digitado
+        diferença será maior_num_intervalo - menor_num_intervalo
+    */
+    
+    /*
+        encontrar diferença:
+        - se os dois da sequencia (numero_atual e num_anterior) forem positivos, acha-se o maior
+        deles e subtrai pra achar a diferença.
+        - se os dois da sequencia forem negativos passa os dois pra positivo multiplicando por -1,
+        acha-se o maior deles e subtrai pra achar a diferença.
+        - se um for positivo e o outro negativo, o negativo é passado pra positivo, e soma os dois 
+        pra achar a diferença. (ex -300, 150 = -300*-1 = 300, 300+150= 450 de diferença.
+    */
+    
+    while(numero_atual != -999){
+        i++;
+        
+        if(i==1){
+            num_anterior = numero_atual;
+            num1_intervalo = numero_atual;
+            num2_intervalo = numero_atual;
+            diferenca_intervalo = 0;
+        }
+        
+        else{
+            calc_diferenca = (numero_atual) - (num_anterior);
+            
+            if(calc_diferenca<0){
+                calc_diferenca*=-1;
+            }
+            
+            if(calc_diferenca >= diferenca_intervalo){
+                diferenca_intervalo = calc_diferenca;
+                num1_intervalo = num_anterior;
+                num2_intervalo = numero_atual;
+            }
+            
+            num_anterior = numero_atual;
+        }
+        
+        
+        printf("número ou -999: ");
+        scanf("%d",&numero_atual);
+    }
+    
+
+    printf("\n%d e %d, pois o intervalo entre eles é %d.",num1_intervalo,num2_intervalo,diferenca_intervalo);
+    
+    return 0;
+}
+
+
+
+
+
+
+///////////////////////////////////
+
+
+
+
+
+
+
+#include <stdio.h>
+
+int main(){
+    int numero_atual, num_anterior, maior_num_intervalo, menor_num_intervalo, diferenca_intervalo, i=0;
+    
+    printf("número ou -999: ");
+    scanf("%d",&numero_atual);
+    
+    
+    /*
+        na primeira iteração o num_anterior, maior_num_intervalo, menor_num_intervalo
+        serão serão iguais ao numero_atual, que é o primeiro digitado
+        diferença será maior_num_intervalo - menor_num_intervalo
+    */
+    
+    /*
+        encontrar diferença:
+        - se os dois da sequencia (numero_atual e num_anterior) forem positivos, acha-se o maior
+        deles e subtrai pra achar a diferença.
+        - se os dois da sequencia forem negativos passa os dois pra positivo multiplicando por -1,
+        acha-se o maior deles e subtrai pra achar a diferença.
+        - se um for positivo e o outro negativo, o negativo é passado pra positivo, e soma os dois 
+        pra achar a diferença. (ex -300, 150 = -300*-1 = 300, 300+150= 450 de diferença.
+    */
+    
+    while(numero_atual != -999){
+        i++;
+        
+        if(i==1){
+            num_anterior = numero_atual;
+            maior_num_intervalo = numero_atual;
+            menor_num_intervalo = numero_atual;
+            diferenca_intervalo = maior_num_intervalo - menor_num_intervalo;
+        }
+        else{
+            int num_anterior_positivo, numero_atual_positivo;
+            
+            //num_anterior < 0 ? (num_anterior_positivo = num_anterior*-1) : (num_anterior_positivo = num_anterior);
+            //numero_atual < 0 ? (numero_atual_positivo = numero_atual*-1) : (numero_atual_positivo = num_anterior);
+            
+            /*
+                se os dois da sequencia (numero_atual e num_anterior) forem positivos, acha-se o maior
+                deles e subtrai pra achar a diferença, se a subtração for maior que a diferença atual a 
+                variavel diferenca_intervalo passa a ser o resultado da subtração, o maior_num_intervalo 
+                passa a ser o maior numero da sequencia e o menor_num_intervalo o menor
+            */
+            if(num_anterior>=0 && numero_atual>=0){
+                
+                if(num_anterior > numero_atual){
+                    
+                    if(num_anterior - numero_atual >= diferenca_intervalo){
+                        diferenca_intervalo = num_anterior - numero_atual;
+                        maior_num_intervalo = num_anterior;
+                        menor_num_intervalo = numero_atual;
+                    }
+                    
+                }
+                else{
+                    
+                    if(numero_atual - num_anterior >= diferenca_intervalo){
+                        diferenca_intervalo = numero_atual - num_anterior;
+                        maior_num_intervalo = numero_atual;
+                        menor_num_intervalo = num_anterior;
+                    }
+                    
+                }
+                
+            }
+            
+            
+            /*
+                se um for positivo e o outro negativo, o negativo é passado pra positivo, e soma os dois 
+                pra achar a diferença. (ex -300, 150 = -300*-1 = 300, 300+150= 450 de diferença.
+                se a soma for maior que a diferença atual a variavel diferenca_intervalo passa a ser o 
+                resultado da soma, o maior_num_intervalo passa a ser o numero positivo da sequencia e o 
+                menor_num_intervalo o negativo
+            */
+            else if(num_anterior>=0 && numero_atual<0){
+                
+                numero_atual_positivo = numero_atual*-1;
+                
+                if(num_anterior + numero_atual_positivo >= diferenca_intervalo){
+                    diferenca_intervalo = num_anterior + numero_atual_positivo;
+                        
+                    maior_num_intervalo = num_anterior;
+                    menor_num_intervalo = numero_atual;
+                }
+                
+            }
+            
+            else if(num_anterior<0 && numero_atual>=0){
+                
+                num_anterior_positivo = num_anterior*-1;
+
+                if(num_anterior_positivo + numero_atual >= diferenca_intervalo){
+                    diferenca_intervalo = num_anterior_positivo + numero_atual;
+                        
+                    maior_num_intervalo = numero_atual;
+                    menor_num_intervalo = num_anterior;
+                }
+                
+            }
+            
+            
+            /*
+                - se os dois da sequencia forem negativos passa os dois pra positivo multiplicando por -1,
+                acha-se o maior deles e subtrai pra achar a diferença. se a subtração for maior que a 
+                diferença atual a variavel diferenca_intervalo passa a ser o resultado da subtração, 
+                o maior_num_intervalo passa a ser o maior numero da sequencia e o menor_num_intervalo o menor
+            */
+            else{
+                
+                num_anterior_positivo = num_anterior*-1;
+                numero_atual_positivo = numero_atual*-1;
+                
+                if(num_anterior_positivo > numero_atual_positivo){
+                    
+                    if(num_anterior_positivo - numero_atual_positivo >= diferenca_intervalo){
+                        diferenca_intervalo = num_anterior_positivo - numero_atual_positivo;
+                        
+                        maior_num_intervalo = numero_atual;
+                        menor_num_intervalo = num_anterior;
+                    }
+                    
+                }
+                else{
+                    
+                    if(numero_atual_positivo - num_anterior_positivo >= diferenca_intervalo){
+                        diferenca_intervalo = numero_atual_positivo - num_anterior_positivo;
+                        maior_num_intervalo = num_anterior;
+                        menor_num_intervalo = numero_atual;
+                    }
+                    
+                }
+                
+            }
+            
+            num_anterior = numero_atual;
+            
+            // printf("num_anterior: %d",num_anterior);
+            // printf("numero %d",numero);
+        }
+        
+        
+        printf("número ou -999: ");
+        scanf("%d",&numero_atual);
+    }
+    
+
+    printf("\n%d e %d, pois o intervalo entre eles é %d.",maior_num_intervalo,menor_num_intervalo,diferenca_intervalo);
+    
+    return 0;
+}

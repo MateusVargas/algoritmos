@@ -1,0 +1,73 @@
+Desenvolva um algoritmo para calcular o peso ideal de uma
+pessoa. Para isto, o programa deve solicitar o sexo do usuário
+e sua altura. Depois, utilizar uma das seguintes fórmulas para
+calcular o peso ideal e apresentar o resultado ao usuário.
+• Para homens: peso = (72.7 * h) - 58;
+• Para mulheres: peso = (62.1 * h) - 44;
+• Onde h refere-se a altura.
+
+#include <stdio.h>
+
+int main(){
+    float altura, peso_ideal;
+    char sexo;
+    
+    printf("sexo: ");
+    scanf("%c",&sexo);
+    
+    printf("altura: ");
+    scanf("%f",&altura);
+    
+    switch(sexo){
+        case 'f':{
+            peso_ideal = (62.1*altura) - 44;
+            printf("peso ideal: %.2f",peso_ideal);
+            break;
+        }
+        case 'm':{
+            peso_ideal = (72.7 * altura) - 58;
+            printf("peso_ideal: %.2f",peso_ideal);
+            break;
+        }
+        default:{
+            printf("sexo inválido");
+        }
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+// 2. Construa um programa para solicitar o sexo da pessoa e depois 
+// apresentar a mensagem: “Prezado Senhor”, para homens e a mensagem 
+// “Prezada Senhora”, para mulheres.
+// Juntamente com isso, apresente uma mensagem de boas-vindas.
+
+#include <stdio.h>
+
+int main(){
+    char sexo;
+    
+    scanf("%c",&sexo);
+    
+    switch(sexo){
+        case 'm':{
+            printf("Prezado Senhor");
+            break;
+        }
+        case 'f':{
+            printf("Prezada Senhora");
+            break;
+        }
+        default:{
+            printf("sexo inválido");
+        }
+    }
+    
+    
+    return 0;
+}

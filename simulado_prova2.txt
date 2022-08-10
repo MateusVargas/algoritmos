@@ -1,0 +1,126 @@
+1. Desenvolva um algoritmo com uma função para ler uma string que armazena até 100
+caracteres e contar quantos espaços em branco existem nela. O total de espaços deve ser
+apresentado ao usuário na função principal.
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+int contar(char this[100]){
+    int cont=0;
+    
+    for(int i=0;i<100;i++){
+        if(this[i]=='\0') break;
+        if(this[i]==' ')cont++;
+    }
+    
+    return cont;
+}
+
+int main(){
+    char frase[100];
+    gets(frase);
+    printf("total de espacos em branco %d",contar(frase));
+}
+
+
+
+
+
+
+
+
+2. Faça um algoritmo com uma função para ler os valores de uma matriz de ordem N (N x N),
+onde N é definido pelo usuário. Depois, faça o somatório dos elementos de mesma coluna
+e armazene-os na posição correspondente em um vetor de N elementos. Por último
+apresentar os valores do vetor ao usuário.
+Exemplo: valor lido N = 4
+0 1 2 3
+Matriz 4x4:
+
+5  4 3 1
+1 88 6 32
+22 0 4 1
+33 0 3 9
+
+Vetor: 61 92 16 43
+
+
+
+
+
+
+3. Utilizando registros, desenvolva um algoritmo que armazene os elementos título, ano de
+edição e número de páginas de n livros de uma biblioteca pessoal. O programa deve ter
+uma função para ler estas informações e apresentar a média do número de páginas de
+todos os livros. Caso o número de páginas de algum livro não tenha sido informado
+(menor ou igual a zero), o programa deve desconsiderá-lo para o cálculo da média. O
+algoritmo também deve possibilitar a impressão relatórios. Para isto, o usuário insere um
+ano de edição e o sistema gera todos os livros publicados naquele ano.
+
+
+
+
+
+
+
+4. Leia uma matriz 10 x 3 com as notas de 10 alunos em 3 provas. Em seguida, escreva
+o numero de alunos cuja pior nota foi na prova 1, o numero de alunos cuja pior nota foi
+na prova 2, e o numero de alunos cuja pior nota foi na prova 3. Em caso de empate
+das piores notas de um aluno, o criterio de desempate e arbitrario, mas o aluno deve ser
+contabilizado apenas uma vez.
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+
+void preencher(int mat[10][3]){
+    for(int i=0;i<10;i++){
+        for(int j=0;j<3;j++){
+            mat[i][j]=rand()%10 +1;
+            printf("%d\t",mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main(){
+    srand(time(NULL));
+    
+    int mat[10][3], cont_pior_p1=0, cont_pior_p2=0, cont_pior_p3=0, menor, posicao_menor;
+    
+    preencher(mat);
+    
+    for(int i=0;i<10;i++){
+        for(int j=0;j<3;j++){
+            if(j==0){
+                menor = mat[i][j];
+                posicao_menor=0;
+            }
+            
+            if(mat[i][j] <= menor){
+                menor = mat[i][j];
+                posicao_menor=j;
+            }
+        }
+
+        if(posicao_menor==0){
+            cont_pior_p1++;
+        }
+        else if(posicao_menor==1){
+            cont_pior_p2++;
+        }
+        else{
+            cont_pior_p3++;
+        }
+    }
+    
+    printf("\ntotal alunos pior nota prova 1: %d",cont_pior_p1);
+    printf("\ntotal alunos pior nota prova 2: %d",cont_pior_p2);
+    printf("\ntotal alunos pior nota prova 3: %d",cont_pior_p3);
+    
+    return 0;
+}
+

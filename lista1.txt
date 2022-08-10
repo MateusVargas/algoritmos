@@ -1,0 +1,434 @@
+1ª Lista de exercícios
+
+1. Assinale os dados do tipo inteiro.
+(x) 1000
+( ) “0”
+( ) “-900”
+( ) verdadeiro
+(x) -456
+(x) 34
+(x) 0
+( ) F
+(x) -1.56
+
+2. Assinale os dados do tipo real.
+( ) -678
+( ) “0.87”
+( ) -456
+(x) -99.8
+( ) “Cinco”
+(x) 45.8789
+( ) True
+
+3. Assinale os dados do tipo literal.
+( ) -678
+(x) “0.87”
+(x) “-9.12”
+( ) True
+( ) -456
+( ) -99.8
+(x) “Cinco”
+( ) 45.8789
+( ) 0.89
+
+4. Assinale os dados do tipo lógico.
+( ) 1000
+( ) “0”
+( ) “-900”
+(x) verdadeiro
+( ) -456
+( ) 34
+( ) 0
+(x) F
+( ) -1.56
+
+5. Assinale os nomes válidos para variáveis.
+(x) x
+(x) endereco
+( ) 1a_prova
+( ) total de produtos
+(x) cidade
+( )prova 1
+
+6. Identifique os dados de entrada (E), processamento (P) e saída (S) do seguinte algoritmo.
+(E) Solicitar o código do produto
+(P) Ler o valor unitário do produto
+(E) Receber a quantidade de itens
+(P) Calcular o valor total de compra (quantidade * valor unitário)
+(S) Apresentar o valor total
+
+7. Desenvolva um algoritmo que:
+a. Declare uma variável float.
+b. Atribua um valor a ela.
+c. Mostre seu valor na tela.
+
+#include <stdio.h>
+
+int main()
+{
+    float var;
+    var = 10.5;
+    printf("%.2f",var);
+
+    return 0;
+}
+
+
+
+
+
+
+8. Desenvolva um algoritmo que solicite ao usuário um número inteiro e apresente o dobro dele na tela.
+
+#include <stdio.h>
+
+int main()
+{
+    int num;
+    printf("digite um número inteiro:");
+    scanf("%d",&num);
+    
+    printf("dobro do número digitado: %d",num*2);
+
+    return 0;
+}
+
+
+
+
+
+9. Desenvolva para somar dois números quaisquer e apresentar o resultado na tela.
+
+#include <stdio.h>
+
+int main()
+{
+    float num1, num2;
+    printf("digite o primeiro número:");
+    scanf("%f",&num1);
+    
+    printf("digite o segundo número:");
+    scanf("%f",&num2);
+    
+    printf("soma: %.2f",num1+num2);
+
+    return 0;
+}
+
+
+
+
+
+
+10. Ler um número inteiro e apresentar o quadrado deste número.
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    float num, quadrado;
+    
+    printf("digite um número:");
+    scanf("%f",&num);
+    
+    quadrado = pow(num,2);
+    
+    printf("quadrado do número digitado: %.2f",quadrado);
+
+    return 0;
+}
+
+
+
+
+
+
+
+11. Elaborar um programa que leia dois valores e apresente os resultados das quatro operações aritméticas
+básicas.
+
+#include <stdio.h>
+
+int main()
+{
+    float num1, num2, soma, multi, sub, div;
+    printf("digite o 1° número: ");
+    scanf("%f",&num1);
+    
+    printf("digite o 2° número: ");
+    scanf("%f",&num2);
+    
+    soma = num1 + num2;
+    multi = num1 * num2;
+    sub = num1 - num2;
+    div = num1 / num2;
+    
+    printf("\nsoma: %.2f \nmultiplicação: %.2f \nsubtração: %.2f \ndivisão: %.2f", soma, multi, sub, div);
+
+    return 0;
+}
+
+
+
+
+
+
+
+12. Ler a temperatura em graus Celsius e apresentá-la convertida em Fahrenheit. A fórmula de conversão é:
+Fahrenheit = 9 x Celsius + 160 / 5
+
+#include <stdio.h>
+
+int main()
+{
+    float temperatura, fahrenreidt;
+    
+    printf("digite a temperatura: ");
+    scanf("%f",&temperatura);
+    
+    fahrenreidt = (9 * temperatura + 160) / 5;
+    
+    printf("temperatura convertida para fahrenreidt: %.2f", fahrenreidt);
+
+    return 0;
+}
+
+
+
+
+
+
+13. Calcular o volume de uma lata de óleo utilizando a fórmula: volume = 3.14159 x r² x Altura.
+
+#include <stdio.h>
+#include <math.h>
+
+#define PI 3.14159
+
+int main(){
+    float altura, raio, volume;
+    
+    printf("digite a altura da lata: ");
+    scanf("%f",&altura);
+    
+    printf("digite o raio da lata: ");
+    scanf("%f",&raio);
+    
+    volume = PI * pow(raio,2) * altura;
+    
+    printf("volume da lata: %.2f",volume);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+14. Ler dois valores para as variáveis A e B, e efetuar a troca dos valores de forma que a variável A passe a
+possuir o valor da variável B e a variável B passe a possuir o valor da variável A. Apresentar os valores
+trocados.
+
+#include <stdio.h>
+
+int main(){
+    int a, b, auxiliar;
+
+    printf("informe o valor de A: ");
+    scanf("%d",&a);
+    
+    printf("informe o valor de B: ");
+    scanf("%d",&b);
+    
+    auxiliar = a;
+    a = b;
+    b = auxiliar;
+    
+    printf("valor de A: %d, valor de B: %d",a,b);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+15. Calcular a quantidade de litros de combustível gasta em uma viagem, utilizando um automóvel que faz 12km
+por litro. Para obter o cálculo, o usuário deve fornecer o tempo gasto e a velocidade média durante a
+viagem. Desta forma, será possível obter a distância percorrida com a fórmula:
+distância = tempo x velocidade
+Tendo o valor da distância, basta calcular a quantidade de litros de combustível utilizada na viagem com
+a fórmula: Litros_usados = distância/ 12
+O programa deve apresentar os valores da velocidade média, tempo gasto na viagem, distância
+percorrida e a quantidade de litros utilizada na viagem.
+
+#include <stdio.h>
+
+int main(){
+    const int km_por_litro = 12;
+    float tempo_gasto, velocidade_media, distancia, litros_usados;
+    
+    printf("informe o tempo gasto: ");
+    scanf("%f",&tempo_gasto);
+    
+    printf("informe a velocidade média: ");
+    scanf("%f",&velocidade_media);
+    
+    distancia = tempo_gasto * velocidade_media;
+    litros_usados = distancia / km_por_litro;
+    
+    printf("\nvelocidade média: %.2f, \ntempo gasto na viagem: %.2f, \ndistância percorrida: %.2f, "
+    "\nquantidade de litros usados: %.2f",velocidade_media,tempo_gasto,distancia,litros_usados);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+16. Ler três valores numéricos inteiros e apresentar o resultado das adições e multiplicações utilizando a
+propriedade distributiva para a máxima combinação possível entre as três variáveis. Por exemplo,
+considerando o uso das variáveis A, B e C, devem ser feitas três adições e três multiplicações, ou seja, deve
+ser combinada a variável A com B, A com C e B com C.
+
+
+17. Elaborar um programa que calcule o volume de uma caixa retangular.
+
+#include <stdio.h>
+
+int main(){
+    float altura, largura, comprimento, volume;
+    
+    scanf("%f %f %f",&altura, &largura, &comprimento);
+    volume = altura * largura * comprimento;
+    
+    printf("volume do retângulo: %.2f",volume);
+    
+    return 0;
+}
+
+
+
+
+
+
+18. Elaborar um programa que apresente o valor da conversão em real (R$) de um valor lido em dólar (US$). O
+programa deve solicitar o valor da cotação do dólar e também a quantidade de dólares disponível com o
+usuário.
+
+#include <stdio.h>
+
+int main(){
+    float cotacao, valor_em_dolares, conversao;
+    
+    printf("digite o valor da cotação do dólar: ");
+    scanf("%f",&cotacao);
+    
+    printf("quantos dólares você tem: ");
+    scanf("%f",&valor_em_dolares);
+    
+    conversao = cotacao * valor_em_dolares;
+    
+    printf("valor convertido em R$: %.2f",conversao);
+    
+    return 0;
+}
+
+
+
+
+
+
+19. Desenvolver um programa que leia três valores inteiros e apresente como resultado o valor da soma dos
+quadrados dos três valores lidos.
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+    int a,b,c, soma_das_potencias;
+    
+    printf("digite o valor de A: ");
+    scanf("%d",&a);
+    
+    printf("digite o valor de B: ");
+    scanf("%d",&b);
+    
+    printf("digite o valor de C: ");
+    scanf("%d",&c);
+    
+    soma_das_potencias = pow(a,2) + pow(b,2) + pow(c,2);
+    
+    printf("soma das potências: %d",soma_das_potencias);
+    
+    return 0;
+}
+
+
+
+
+
+
+20. Desenvolver um programa que leia três valores inteiros e apresente como resultado o valor do quadrado da
+soma dos três valores lidos.
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+    int valor1, valor2, valor3, soma, quadrado_da_soma;
+    
+    printf("digite o 1° valor: ");
+    scanf("%d",&valor1);
+    
+    printf("digite o 2° valor: ");
+    scanf("%d",&valor2);
+    
+    printf("digite o 3° valor: ");
+    scanf("%d",&valor3);
+    
+    soma = valor1 + valor2 + valor3;
+    quadrado_da_soma = pow(soma,2);
+    
+    printf("quadrado da soma dos valores lidos: %d",quadrado_da_soma);
+    
+    return 0;
+}
+
+
+
+
+
+
+21. Ler o valor correspondente ao salário mensal (SM) de um trabalhador e também o valor do percentual (PE)
+de reajuste a ser atribuído. Apresentar o valor do novo salário (NS).
+
+#include <stdio.h>
+
+int main(){
+    double salario;
+    float percentual, novo_salario, auxiliar, valor_aumento;
+    
+    printf("informe o salário: ");
+    scanf("%lf",&salario);
+    
+    printf("informe o percentual de aumento: ");
+    scanf("%f",&percentual);
+    
+    auxiliar = percentual * salario;
+    valor_aumento = auxiliar / 100;
+    novo_salario = salario + valor_aumento;
+    
+    printf("salário com reajuste: %.2f",novo_salario);
+    
+    return 0;
+}
+
