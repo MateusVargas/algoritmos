@@ -887,4 +887,153 @@ int main()
 
 
 
+/*
+ordenar matriz de string em ordem alfabetica
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    char nomes[3][30], aux[30];
+    int n;
+
+    for(int i=0;i<3;i++){
+        gets(nomes[i]);
+    }
+
+    for(int i=0;i<3;i++){
+        for(int j=1;j<3;j++){
+            if(strcmp(nomes[j-1],nomes[j])>0){
+                strcpy(aux,nomes[j-1]);
+                strcpy(nomes[j-1],nomes[j]);
+                strcpy(nomes[j],aux);
+            }
+        }
+    }
+
+    for(int i=0;i<3;i++){
+        puts(nomes[i]);
+    }
+    return 0;
+}
+
+
+
+
+/*
+Leia uma matriz 10 x 3 com as notas de 10 alunos em 3 provas. Em seguida, escreva
+o numero de alunos cuja pior nota foi na prova 1, o n ´ umero de alunos cuja pior nota foi ´
+na prova 2, e o numero de alunos cuja pior nota foi na prova 3. Em caso de empate ´
+das piores notas de um aluno, o criterio de desempate ´ e arbitr ´ ario, mas o aluno deve ser ´
+contabilizado apenas uma vez
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void preencher(int mat[10][3]){
+    for(int i=0;i<10;i++){
+        for(int j=0;j<3;j++){
+            mat[i][j]=rand()%10+1;
+            printf("%d\t",mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main(){
+    srand(time(NULL));
+    int mat[10][3],cont_p1=0,cont_p2=0,cont_p3=0;
+    int menor_nota,posicao_menor_nota;
+    preencher(mat);
+
+    for(int i=0;i<10;i++){
+        for(int j=0;j<3;j++){
+            if(j==0){
+                menor_nota=mat[i][j];
+                posicao_menor_nota=j;
+            }
+            if(mat[i][j]<menor_nota){
+                menor_nota=mat[i][j];
+                posicao_menor_nota=j;
+            }
+        }
+
+        if(posicao_menor_nota==0){
+            cont_p1++;
+        }
+        else if(posicao_menor_nota==1){
+            cont_p2++;
+        }
+        else{
+            cont_p3++;
+        }
+    }
+
+    printf("pior nota na prova 1: %d\n",cont_p1);
+    printf("pior nota na prova 2: %d\n",cont_p2);
+    printf("pior nota na prova 3: %d\n",cont_p3);
+
+
+    return 0;
+}
+
+
+
+
+/*
+Fac¸a um programa para corrigir uma prova com 10 questoes de m ˜ ultipla escolha ( ´ a, b,
+c, d ou e), em uma turma com 3 alunos. Cada questao vale 1 ponto. Leia o gabarito, e ˜
+para cada aluno leia sua matricula (numero inteiro) e suas respostas. Calcule e escreva: ´
+Para cada aluno, escreva sua matr´ıcula, suas respostas, e sua nota. O percentual de
+aprovac¸ao, assumindo m ˜ edia 7.0.
+*/
+#include <stdio.h>
+
+void ler_gabarito(char v[10]){
+    for(int i=0;i<10;i++){
+        printf("gabarito trabalho[%d]: ",i+1);
+        scanf(" %c",&v[i]);
+    }
+}
+
+int main(){
+    char vet[10], alunos[3][10];
+    int matricula,nota,aprovados=0;
+    float percentual;
+    ler_gabarito(vet);
+
+    for(int i=0;i<3;i++){
+        nota=0;
+        printf("\nmatricula aluno[%d]: ",i+1);
+        scanf("%d",&matricula);
+        for(int j=0;j<10;j++){
+            printf("\nnota trabalho[%d]: ",j+1);
+            scanf(" %c",&alunos[i][j]);
+            if(vet[j]==alunos[i][j]){
+                nota++;
+            }
+        }
+        if(nota>=7){
+            aprovados++;
+        }
+        printf("aluno: %d\n",matricula);
+        printf("respostas: \n");
+        for(int j=0;j<10;j++){
+            printf("%c\t",alunos[i][j]);
+        }
+        printf("\nnota final: %d\n",nota);
+    }
+    percentual = (float)aprovados*100/3;
+    printf("percentual aprovados: %.2f%%",percentual);
+
+    return 0;
+}
+
+
+
+
+
 //GERAR NUMEROS ENTRE 100 E 200: GERAR UM NUMERO ENTRE 0 E 100 E DEPOIS SOMAR +100
