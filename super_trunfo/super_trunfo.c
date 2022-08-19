@@ -17,7 +17,7 @@ para gerar numeros aleatorios de 0 a 11
 
 struct baralho{
     char flag;
-    char nome[30];
+    char nome[40];
     int is_super_trunfo;
     int forca;
     int habilidade;
