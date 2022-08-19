@@ -571,6 +571,63 @@ int main(){
 telefone, referentes ao ano passado. Faça um algoritmo que leia estes gastos e depois:
 mostre os meses em que houve mais gasto com água, luz e telefone e a média de gasto
 com cada categoria.
+#include <stdio.h>
+
+struct gastos{
+    float agua;
+    float luz;
+    float telefone;
+};
+
+void calc();
+
+int main(){
+    calc();
+    return 0;
+}
+
+void calc(){
+    int mes_a,mes_l,mes_t;
+    struct gastos gastos[12];
+    float soma_a=0,soma_l=0,soma_t=0,maior_a,maior_l,maior_t,media_a,media_l,media_t;
+
+    for(int i=0;i<12;i++){
+        printf("mes %d agua:",i);
+        scanf("%f",&gastos[i].agua);
+        printf("mes %d luz:",i);
+        scanf("%f",&gastos[i].luz);
+        printf("mes %d telefone:",i);
+        scanf("%f",&gastos[i].telefone);
+        if(i==0){
+            maior_a=gastos[i].agua; mes_a=i;
+            maior_l=gastos[i].luz; mes_l=i;
+            maior_t=gastos[i].telefone; mes_t=i;
+        }
+        if(gastos[i].agua>maior_a){
+            maior_a=gastos[i].agua; mes_a=i;
+        }
+        if(gastos[i].luz>maior_l){
+            maior_l=gastos[i].luz; mes_l=i;
+        }
+        if(gastos[i].telefone>maior_t){
+            maior_t=gastos[i].telefone; mes_t=i;
+        }
+        soma_a+=gastos[i].agua;
+        soma_l+=gastos[i].luz;
+        soma_t+=gastos[i].telefone;
+    }
+    media_a=soma_a/12;
+    media_l=soma_l/12;
+    media_t=soma_t/12;
+    printf("mes com maior gasto de agua: %d\n",mes_a);
+    printf("mes com maior gasto de luz: %d\n",mes_l);
+    printf("mes com maior gasto de telefone: %d\n",mes_t);
+    printf("media de gastos com agua: %2.f\n",media_a);
+    printf("media de gastos com luz: %.2f\n",media_l);
+    printf("media de gastos com telefone: %.2f\n",media_t);
+}
+
+
 
 
 
@@ -582,6 +639,51 @@ a) Ler certa quantidade de peças para o cadastro. Considere que o código -999 
 entrada de dados;
 b) Exibir uma listagem das peças que possuem menos de X unidades, onde X é uma
 quantidade fornecida pelo usuário.
+#include <stdio.h>
+
+struct peca{
+    int code;
+    float preco;
+    char descr[50];
+    int qtd;
+};
+
+struct peca cadastro(){
+    struct peca peca;
+    printf("code: ");
+    scanf("%d",&peca.code);
+    printf("preco: ");
+    scanf("%f",&peca.preco);
+    printf("descricao: ");
+    getchar();
+    gets(peca.descr);
+    printf("qtd: ");
+    scanf("%d",&peca.qtd);
+    return peca;
+};
+
+int main(){
+    int total=0,unidades,encerrar=0;
+    struct peca pecas[1000];
+    for(int i=0;encerrar!=-999;i++){
+        pecas[i]=cadastro();
+        scanf("%d",&encerrar);
+        total++;
+    }
+    printf("qtd unidades: ");
+    scanf("%d",&unidades);
+    for(int i=0;i<total;i++){
+        if(pecas[i].qtd<unidades){
+            printf("%d",pecas[i].code);
+            puts(pecas[i].descr);
+        }
+    }
+
+    return 0;
+}
+
+
+
 
 
 
@@ -600,6 +702,49 @@ financiado.
 
 
 10. Pesquise sobre registros aninhados, com structs dentro de structs
+#include <stdio.h>
+
+struct turma{
+    int sala;
+    int ano;
+    struct alunos{
+        char nome[20];
+        int notas[5];
+    } al[30];
+};
+
+/*
+outra forma
+struct aluno{
+    char nome[20];
+    int notas[5];
+};
+struct turma{
+    int sala;
+    int ano;
+    struct aluno al[30];
+};
+*/
+
+int main(){
+    struct turma t[5];
+    for(int i=0;i<5;i++){
+        scanf("%d",&t[i].sala);
+        scanf("%d",&t[i].ano);
+        for(int j=0;j<30;j++){
+            printf("nome:");
+            getchar();
+            gets(t[i].al[j].nome);
+            for(int k=0;k<5;k++){
+                printf("nota %d",k);
+                scanf("%d",&t[i].al[j].notas[k]);
+            }
+        }
+    }
+    return 0;
+}
+
+
 
 
 //STRUCT DENTRO DE STRUCT
@@ -734,3 +879,133 @@ int main()
 }
 
 
+
+
+Utilizando registros, desenvolva um algoritmo que armazene os elementos título, ano de
+edição e número de páginas de n livros de uma biblioteca pessoal. O programa deve ter
+uma função para ler estas informações e apresentar a média do número de páginas de
+todos os livros. Caso o número de páginas de algum livro não tenha sido informado
+(menor ou igual a zero), o programa deve desconsiderá-lo para o cálculo da média. O
+algoritmo também deve possibilitar a impressão relatórios. Para isto, o usuário insere um
+ano de edição e o sistema gera todos os livros publicados naquele ano.
+
+#include <stdio.h>
+
+struct livros{
+    char titulo[30];
+    int ano;
+    int num_pag;
+};
+
+typedef struct livros Livro;
+
+void funcao(){
+    int n,soma=0,ano,cont_livros=0;
+    scanf("%d",&n);
+    Livro livro[n];
+
+    for(int i=0;i<n;i++){
+        getchar();
+        gets(livro[i].titulo);
+        scanf("%d",&livro[i].ano);
+        scanf("%d",&livro[i].num_pag);
+        if(livro[i].num_pag>0){
+            soma+=livro[i].num_pag;
+            cont_livros++;
+        }
+    }
+
+    float media = (float)soma/cont_livros;
+    printf("\nmedia: %.2f\n",media);
+    scanf("%d",&ano);
+
+    for(int i=0;i<n;i++){
+        if(livro[i].ano==ano){
+            printf("%s\n",livro[i].titulo);
+            printf("%d\n",livro[i].ano);
+            printf("%d",livro[i].num_pag);
+        }
+    }
+}
+
+int main(){
+    funcao();
+    return 0;
+}
+
+
+
+
+/*
+Faca um programa que armazena filmes produzidos por varios diretores e:
+• Crie e leia um vetor de 5 diretores, cada um contendo nome (maximo 20 letras),
+quantidade de filmes e filmes. O membro filmes e um vetor, que deve ser criado
+apos ter lido quantidade de filmes. Cada filme e composto por nome, ano e duracao.
+• Procure um diretor por nome, mostrando todos os filmes que ele ja produziu. Repita
+o processo ate digitar uma string vazia
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+struct filme{
+    char nome[50];
+    int ano;
+    char duracao[20];
+};
+
+struct diretor{
+    char nome[50];
+    int qtd_filmes;
+    struct filme filmes[100];
+};
+
+void funcao();
+
+int main(){
+    funcao();
+    return 0;
+}
+
+void funcao(){
+    struct diretor diretor[5];
+    char pesquisa[50], encerrar[20]={'n'};
+
+    for(int i=0;i<5;i++){
+        printf("nome do diretor: ");
+        getchar();
+        fgets(diretor[i].nome,51,stdin);
+        printf("qtd filmes: ");
+        scanf("%d",&diretor[i].qtd_filmes);
+        while(diretor[i].qtd_filmes<0 || diretor[i].qtd_filmes>100){
+            printf("qtd filmes: ");
+            scanf("%d",&diretor[i].qtd_filmes);
+        }
+        for(int j=0;j<diretor[i].qtd_filmes;j++){
+            printf("nome do filme: ");
+            getchar();
+            fgets(diretor[i].filmes[j].nome,51,stdin);
+            printf("ano: ");
+            scanf("%d",&diretor[i].filmes[j].ano);
+            printf("duracao: ");
+            getchar();
+            fgets(diretor[i].filmes[j].duracao,21,stdin);
+        }
+    }
+
+    while(strlen(encerrar)>0){
+        printf("procurar nome do diretor: ");
+        getchar();
+        fgets(pesquisa,51,stdin);
+        for(int i=0;i<5;i++){
+            if(strcmp(pesquisa,diretor[i].nome)==0){
+                for(int j=0;j<diretor[i].qtd_filmes;j++){
+                    printf("filme: %s\n",diretor[i].filmes[j].nome);
+                    printf("ano: %d\n",diretor[i].filmes[j].ano);
+                    printf("duracao: %s\n",diretor[i].filmes[j].duracao);
+                }
+            }
+        }
+        fgets(encerrar,21,stdin);
+    }
+}
