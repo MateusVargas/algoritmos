@@ -1035,5 +1035,54 @@ int main(){
 
 
 
+Faça um algoritmo com uma função para ler os valores de uma matriz de ordem N (N x N),
+onde N é definido pelo usuário. Depois, faça o somatório dos elementos de mesma coluna
+e armazene-os na posição correspondente em um vetor de N elementos. Por último
+apresentar os valores do vetor ao usuário.
+Exemplo: valor lido N = 4
+0 1 2 3
+Matriz 4x4:
+
+5  4 3 1
+1 88 6 32
+22 0 4 1
+33 0 3 9
+
+Vetor: 61 92 16 43
+
+#include <stdio.h>
+#include <string.h>
+
+void funcao(){
+    int n,soma;
+    scanf("%d",&n);
+    int mat[n][n],vet[n];
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            scanf("%d",&mat[i][j]);
+        }
+    }
+
+    for(int i=0;i<n;i++){
+        soma=0;
+        for(int j=0;j<n;j++){
+            soma+=mat[j][i];
+        }
+        vet[i]=soma;
+    }
+
+    for(int i=0;i<n;i++){
+        printf("%d\t",vet[i]);
+    }
+}
+
+int main(){
+    funcao();
+    return 0;
+}
+
+
+
 
 //GERAR NUMEROS ENTRE 100 E 200: GERAR UM NUMERO ENTRE 0 E 100 E DEPOIS SOMAR +100
