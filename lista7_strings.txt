@@ -401,3 +401,32 @@ int main()
 }
 
 
+
+
+/*
+Construa um programa que leia duas strings fornecidas pelo usuario e verifique se a segunda 
+string lida esta contida no final da primeira, retornando o resultado da verificacao
+*/
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    char s1[30], s2[30], esta_contido='s';
+    gets(s1);
+    gets(s2);
+
+    while(strlen(s2)>strlen(s1)){
+        gets(s2);
+    }
+
+    for(int i=strlen(s1)-strlen(s2);i<strlen(s1);i++){
+        if(s1[i]!=s2[i-(strlen(s1)-strlen(s2))]){
+            esta_contido='n';
+            break;
+        }
+    }
+
+    esta_contido=='s' ? printf("esta contido") : printf("nao esta contido");
+    return 0;
+}
+
