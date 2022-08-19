@@ -1009,3 +1009,4 @@ void funcao(){
         fgets(encerrar,21,stdin);
     }
 }
+
