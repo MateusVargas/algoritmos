@@ -1085,4 +1085,54 @@ int main(){
 
 
 
+
+/*Faca um programa que leia uma matriz de 5 linhas e 4 colunas contendo as seguintes
+informac¸oes sobre alunos de uma disciplina, sendo todas as informacoes do tipo inteiro:
+• Primeira coluna: numero de matricula (use um inteiro)
+• Segunda coluna: media das provas
+• Terceira coluna: media dos trabalhos
+• Quarta coluna: nota final
+Elabore um programa que:
+(a) Leia as tres primeiras informacoes de cada aluno
+(b) Calcule a nota final como sendo a soma da media das provas e da media dos trabalhos
+(c) Imprima a matricula do aluno que obteve a maior nota final (assuma que so existe uma maior nota)
+(d) Imprima a media aritmetica das notas finais*/
+
+
+#include <stdio.h>
+int main(){
+	int mat [5][4],mat_maior_nota;
+	float maior_nota,soma_nota=0,media;
+	for(int i=0;i<5;i++){
+		for(int j=0;j<3;j++){
+			printf("\nmat[%d][%d]:",i,j);
+			scanf("%d",&mat[i][j]);
+			if(j==2){
+				mat[i][j+1]=mat[i][j]+mat[i][j-1];
+				soma_nota+=mat[i][j+1];
+				if(i==0){
+					maior_nota=mat[i][j+1];
+					mat_maior_nota=mat[i][0];
+				}
+				if(mat[i][j+1]>maior_nota){
+					maior_nota=mat[i][j+1];
+					mat_maior_nota=mat[i][0];
+				}
+			}
+		}
+	}
+	for(int i=0;i<5;i++){
+		for(int j=0;j<4;j++){
+			printf("%d\t",mat[i][j]);
+		}
+		printf("\n");
+	}
+	media=soma_nota/5;
+	printf("\n%f",media);
+	printf("\n%f",maior_nota);
+	printf("\n%d",mat_maior_nota);
+}
+
+
+
 //GERAR NUMEROS ENTRE 100 E 200: GERAR UM NUMERO ENTRE 0 E 100 E DEPOIS SOMAR +100
