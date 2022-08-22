@@ -430,3 +430,51 @@ int main(){
     return 0;
 }
 
+
+
+
+/*Desenvolva um algoritmo com uma função que recebe por parâmetro uma string referente ao 
+nome de um arquivo com sua extensão. A função deve solicitar uma nova extensão alterar a string sem 
+modificar o nome do arquivo. Por fim, apresentar ao usuário o resultado desse processo. Exemplo:
+String lida: Foto1.png
+Nova extensão: jpeg
+Saída do programa: Foto1.jpeg
+ATENÇÃO: 
+• A nova extensão deve ser atribuída a String lida. Não basta apenas mostrar duas strings, uma com o 
+nome e outra com o novo formato;
+• O nome original do arquivo e sua extensão devem ser lidos em uma única variável;
+• Não esqueça que a quantidade de caracteres da extensão de um arquivo pode variar (exemplo: 
+png, jpeg, js, etc). Não se preocupe com o formato do arquivo.*/
+
+#include <stdio.h>
+#include <string.h>
+void funcao(char nome[30]){
+	char ext[10];
+	int indice_ponto;
+	
+	fgets(ext,9,stdin);
+	
+	for(int i=strlen(nome)-1;i>=0;i--){
+		if(nome[i]=='.'){
+			indice_ponto=i;
+			break;
+		}
+	}
+	nome[indice_ponto+1]='\0';
+	strcat(nome,ext);
+	printf("%s",nome);
+	
+	/*for(int i=indice_ponto+1;i<(indice_ponto+1)+strlen(ext);i++){
+		nome[i]=ext[i-indice_ponto+1];
+		//printf("%c",nome[i]);
+	}
+	nome[(indice_ponto+1)+strlen(ext)]='\0';
+	puts(nome);*/
+}
+int main(){
+	char nome[30];
+	fgets(nome,29,stdin);
+	funcao(nome);
+	return 0;
+}
+
