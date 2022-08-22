@@ -1128,3 +1128,64 @@ int main(){
 
     return 0;
 }
+
+
+
+
+/* triangulo de pascal */
+
+#include <stdio.h>
+#include <string.h>
+
+void imp(int vet[50],int lim){
+	for(int i=0;i<=lim;i++){
+		printf("%d ",vet[i]);
+	}
+	printf("\n");
+}
+
+int main(){
+	int v[50],n=15,p=1;
+	v[0]=1;
+
+	for(int i=0;i<n;i++){
+		if(i==0){
+			imp(v,i);
+		}
+		else if(i==1){
+			v[1]=1;
+			imp(v,i);
+		}
+		else if(i==2){
+			v[1]=2;
+			v[i]=1;
+			imp(v,i);
+		}
+		/*else if(i==3){
+			v[i]=1;
+			v[i-1]=3;
+			v[i-2]=3;
+			imp(v,i);
+		}*/
+		else{
+			int v_aux[i];
+			int ind=1;
+
+			for(int u=0;u<i;u++){
+                v_aux[u]=v[ind];
+                ind++;
+			}
+			v[1]=i;
+			v[i]=1;
+			v[i-1]=i;
+
+			for(int j=2;j<=i-2;j++){
+				v[j]=v_aux[j-1]+v_aux[j-2];
+			}
+			imp(v,i);
+		}
+	}
+
+	return 0;
+}
+
