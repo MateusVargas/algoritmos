@@ -1010,3 +1010,98 @@ void funcao(){
     }
 }
 
+
+
+
+/*Desenvolva um algoritmo para controlar acesso de usuários a uma rede social. O programa deve 
+ter um registro com os campos usuário, email e senha e apresentar o seguinte menu na tela inicial:
+1. Criar conta
+2. Acessar perfil
+3. Sair
+Caso o usuário selecione a opção 1, o sistema deve solicitar os campos para o cadastro. Se o usuário ou 
+email digitado já existir, mostrar uma mensagem apropriada e solicitar novamente o(s) campo(s)
+correspondente(s). Caso o usuário selecione a opção 2, a mensagem “Bem-vindo(a) ao seu perfil!” deve 
+ser apresentada. A opção 3 finaliza o programa.*/
+
+#include <stdio.h>
+#include <string.h>
+
+struct conta{
+	char usuario[50];
+	char email[50];
+	char senha[30];
+};
+
+int main(){
+	int opcao,total_contas=0,i=0,ja_existe=0;
+	struct conta conta[50];
+	do{
+		printf("1.criar conta\n2.acessar\n3.sair\n");
+		scanf("%d",&opcao);
+		if(opcao==1){
+			printf("\nnome:");
+			getchar();
+			fgets(conta[i].usuario,51,stdin);
+			if(i==1){
+				while(strcmp(conta[i].usuario,conta[0].usuario)==0){
+					printf("\nnomejaemuso:");
+					fgets(conta[i].usuario,51,stdin);
+				}
+			}
+			if(i>1){
+				for(int j=0;j<total_contas;j++){
+					if(strcmp(conta[j].usuario,conta[i].usuario)==0){
+						ja_existe=1;
+					}
+				}
+				while(ja_existe==1){
+					ja_existe=0;
+					printf("\nnome ja existe:");
+					fgets(conta[i].usuario,51,stdin);
+					for(int k=0;k<total_contas;k++){
+						if(strcmp(conta[k].usuario,conta[i].usuario)==0){
+								ja_existe=1;
+						}
+					}
+				}
+			}
+			
+			printf("\nemail:");
+			
+			fgets(conta[i].email,51,stdin);
+			if(i==1){
+				while(strcmp(conta[i].email,conta[0].email)==0){
+					printf("\nemail:");
+					fgets(conta[i].email,51,stdin);
+				}
+			}
+			if(i>1){
+				for(int j=0;j<total_contas;j++){
+					if(strcmp(conta[j].email,conta[i].email)==0){
+						ja_existe=1;
+					}
+				}
+				while(ja_existe==1){
+					ja_existe=0;
+					printf("\nemail:");
+					fgets(conta[i].email,51,stdin);
+					for(int k=0;k<total_contas;k++){
+						if(strcmp(conta[k].email,conta[i].email)==0){
+								ja_existe=1;
+						}
+					}
+				}
+			}
+			
+			i++;
+			total_contas++;
+		}
+		else if(opcao==2){
+			for(int i=0;i<total_contas;i++){
+			   printf("\nnome %s",conta[i].usuario);
+			   printf("\nemail %s",conta[i].email);
+			}
+			printf("\n");
+		}
+	}while(opcao!=3);
+}
