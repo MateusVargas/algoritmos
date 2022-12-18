@@ -1,0 +1,124 @@
+instrucoes:
+
+1 - instrucoes movimentar dados
+
+mp -> mp
+mp -> registrador
+registrador -> mp
+
+Exemplos de códigos de instrução podem ser: STORE, LOAD, MOVE, STR, MOV
+
+store: mp -> registrador
+load: registrador -> mp
+
+
+/////////
+
+
+2 - instrucoes diadicas: 
+Adição, Subtração, Multiplicação, Divisão e instrucoes booelanas: AND, OR, NOT, EXCLUSIVE OR
+
+
+/////////
+
+
+3 - instrucoes monoadicas:
+- operacoes com um operando e so um resultado
+
+
+////////
+
+
+5 - instrucoes de comparações e desvios: (if else)
+- CMP (compara dois valores);
+– BRE/JE (desvia para uma determinada posição se os valores forem iguais);
+– BRNE/JNE (desvia para uma determinada posição se o valor não for igual);
+– BR/JMP é um tipo de desvio não-condicional;
+
+
+///////
+
+
+6 - instrucoes chamadas procedimento
+- transfere a execucao do programa para outro trecho de codigo, quando este trecho terminar volta pro trecho que originou a chamada
+
+
+//////
+
+
+7 - Instruções de Entrada e Saída
+– São as instruções usadas para enviar (e informações) para dispositivos de entrada e saida tais como:
+- Impressoras
+- Discos rígidos
+- Teclados
+
+
+ex:
+
+x = a * (b+c*d-e/f)
+
+com 3 operandos:
+
+MPY c, d, t1 //mpy multiplica
+div e, f, t2 //divide
+add b, t1, x //adicao
+sub x, t2, x //subtracao
+mpy a, x, x
+
+com 2 operandos:
+
+mpy c, d
+div e, f
+add b, c
+sub b, e
+mpy a, b
+move x, a
+
+com 1 operando:
+
+lda c //carrega pra dentro do acumulador o valor de c
+mpy d
+add b
+sta t1
+lda e
+div f
+sta t2
+lda t1
+sub t2
+mpy a
+str x
+
+////
+
+lda c
+mpy d
+sta t1
+lda e
+div f
+sta t2
+lda t1
+sub t2
+add b
+mpy a
+sta x
+
+
+
+x = a * (b+c * d-e/f) com zero operandos:
+
+push a  //empilha a
+push c  //bota c no final da pilha
+push d  //bota d no final da pilha
+mpy	//multiplica os 2 ultimos da pilha, tira c e d da pilha e coloca o resultado da multiplicacao no fim da pliha
+push b	//bota b no final da pilha
+add	//soma o resultado da multiplicacao com b
+push d  //bota d no final da pilha
+push e  //bota e no final da pilha
+push f  //bota f no final da pilha
+div	//divide os 2 ultimos (e/f)
+sub	
+mpy
+pop x
+
+
+
