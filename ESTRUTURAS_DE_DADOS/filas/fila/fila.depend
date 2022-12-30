@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1662467808 source:/home/mateus/Documentos/teste/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1662472422 source:/home/mateus/Documentos/ESTRUTURAS_DE_DADOS/fila/main.c
+	<stdio.h>
+	<stdlib.h>
+

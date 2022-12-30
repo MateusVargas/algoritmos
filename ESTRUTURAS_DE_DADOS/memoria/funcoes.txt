@@ -1,0 +1,30 @@
+﻿A função malloc permite que seja feita a alocação de uma nova área de memória para uma estrutura.
+ A função calloc tem a mesma funcionalidade de 
+malloc, exceto que devem ser fornecidos o tamanho da área a quantidade de elementos.
+ A função realloc permite que uma área previamente alocada seja aumentada ou diminuída.
+A função free libera uma area alocada previamente com a função malloc, calloc ou realloc
+
+2.3.1 Função malloc
+É a função malloc que realiza a alocação de memória. Deve-se informar 
+para a função a quantidade de bytes para alocação. A função irá retornar, se exis-
+tir memória suiciente, um endereço que deve ser colocado em uma variável do 
+tipo ponteiro. 
+Como a função retorna um ponteiro para o tipo void, deve-se utilizar o 
+typecast, transformando este endereço para o tipo de ponteiro desejado. 
+
+2.3.2 Função calloc
+Em vez de se alocar uma quantidade de bytes através da função malloc, 
+pode-se usar a função calloc e especiicar a quantidade de bloco de um determi-
+nado tamanho. Funcionalmente a alocação irá ocorrer de maneira idêntica. 
+A única diferença entre o malloc e o calloc é que a última função, além de 
+alocar o espaço, também inicializa o mesmo com zeros. 
+
+2.3.3 Função realloc
+Às vezes é necessário expandir uma área alocada. Para isto deve-se usar a 
+função realloc. Deve-se passar para ela o ponteiro retornado pelo malloc e a 
+indicação do novo tamanho. A realocação de memória pode resultar na troca de blocos na memória.
+
+2.3.4 Função free
+Quando não se deseja mais uma área alocada, deve-se liberá-la através da 
+função free. Deve ser passado para a função o endereço, que se deseja liberar, 
+que foi devolvido quando a alocação da memória ocorreu.

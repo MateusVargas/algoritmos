@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1666033996 source:c:\users\aluno\desktop\aula-filas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"filas.h"
+
+1666032304 c:\users\aluno\desktop\aula-filas\filas.h
+

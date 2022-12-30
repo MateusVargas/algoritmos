@@ -1,0 +1,47 @@
+/******************************************************************************
+
+Faça uma função recursiva que permita somar os elementos de um vetor de N valores inteiros.
+
+
+*******************************************************************************/
+#include <stdio.h>
+
+int somar(int vet[6], int tam, int i, int soma){
+
+    if(i==1){
+        return soma + vet[i-1];
+    }
+    else if(i==2){
+        return soma + vet[i-1] + vet[i-2];
+    }
+    
+    soma += vet[i-1] + vet[i-2];
+    
+    return somar(vet,tam,i-2,soma);
+    
+}
+
+int main()
+{
+    int vet[6] = {2,4,12,1,5,8};
+    printf("%d",somar(vet,6,6,0));
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

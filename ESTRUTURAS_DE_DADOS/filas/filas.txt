@@ -1,0 +1,10 @@
+﻿Uma fila é um conjunto ordenado de itens a partir do qual se podem eliminar itens numa extremidade - início da fila - e no qual se podem inserir itens na outra extremidade -final da fila. 
+Ela é uma prima próxima da pilha, pois os itens são inseridos e removidos de acordo com o princípio de que o primeiro que entra é o primeiro que sai - first in, first out (FIFO). 
+O conceito de fila existe no mundo real, vide exemplos como filas de banco, pedágios, restaurantes etc. As operações básicas de uma fila são:
+insert ou enqueue - insere itens numa fila (ao final). 
+remove ou dequeue - retira itens de uma fila (primeiro item). 
+empty - verifica se a fila está vazia. 
+size - retorna o tamanho da fila. 
+front - retorna o próximo item da fila sem retirar o mesmo da fila.
+A operação insert ou enqueue sempre pode ser executada, uma vez que teoricamente uma fila não tem limite. 
+A operação remove ou dequeue só pode ser aplicado se a fila não estiver vazia, causando um erro de underflow ou fila vazia se esta operação for realizada nesta situação.

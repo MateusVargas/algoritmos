@@ -1,0 +1,258 @@
+/******************************************************************************
+
+1. Faça um programa que receba dois valores e, utilizando ponteiros, retorne o maior e
+menor deles. O programa deve ter um controle sobre valores iguais.
+
+*******************************************************************************/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void func(int *pa, int *pb){
+    if(*pa > *pb){
+        printf("A maior que B");
+    }
+    else if(*pa == *pb){
+        printf("iguais");
+    }
+    else{
+        printf("B maior que A");
+    }
+}
+
+int main(){
+    int a, b;
+    scanf("%d %d",&a,&b);
+    func(&a,&b);
+    
+    return 0;
+}
+
+
+
+
+
+
+/******************************************************************************
+
+2. Desenvolver um programa que possua a função alteraValores() para realizar a troca
+dos valores de duas variáveis. Essa função recebe os endereços das variáveis passadas
+pela função main(), armazenando-os nos ponteiros p1 e p2. Dentro da função, trocamse os conteúdos dos endereços, retornando para a função chamadora, onde deverão
+ser impressos.
+
+*******************************************************************************/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void alteraValores(int *p1, int *p2){
+    int aux;
+    aux = *p1;
+    *p1 = *p2;
+    *p2 = aux;
+}
+
+int main(){
+    int a = 10, b = 50;
+    alteraValores(&a,&b);
+    printf("a: %d\tb: %d",a,b);
+    return 0;
+}
+
+
+
+
+
+/******************************************************************************
+
+3. Desenvolva um algoritmo que faça a leitura de dois números inteiros e chame uma
+função para verificar se são valores primos. Caso não sejam, altere os valores das
+variáveis para armazenar os próximos primos a partir dos valores lidos. Exemplo:
+valores lidos: x = 4 e y = 9. (Não são primos)
+x = 5 e y = 11 (as variáveis recebem estes valores, pois 5 é o próximo primo
+depois de 4 e 11 é o próximo primo depois de 9)
+
+*******************************************************************************/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void verificar(int *pA, int *pB){
+    int divisoresA=0, divisoresB=0;
+    
+    for(int i=1;i<=*pA;i++){
+        if(*pA % i == 0){
+            divisoresA++;
+        }
+    }
+    
+    for(int i=1;i<=*pB;i++){
+        if(*pB % i == 0){
+            divisoresB++;
+        }
+    }
+    
+    if(divisoresA == 2){
+        printf("%d e primo\n",*pA);
+    }
+    else{
+        while(divisoresA != 2){
+            divisoresA = 0;
+            (*pA)++;
+
+            for(int i=1;i<=*pA;i++){
+                if(*pA % i == 0){
+                    divisoresA++;
+                }
+            }
+        }
+        
+        printf("a = %d pois é o próximo primo\n",*pA);
+    }
+    
+    if(divisoresB == 2){
+        printf("%d e primo\n",*pB);
+    }
+    else{
+        while(divisoresB != 2){
+            divisoresB=0;
+            (*pB)++;
+            
+            for(int i=1;i<=*pB;i++){
+                if(*pB % i == 0){
+                    divisoresB++;
+                }
+            }
+        }
+        
+        printf("b = %d pois é o próximo primo\n",*pB);
+    }
+    
+}
+
+
+int main(){
+    int a = 4, b = 98;
+    verificar(&a,&b);
+    return 0;
+}
+
+
+
+
+
+/******************************************************************************
+
+4. Faça um algoritmo que leia um vetor de 10 elementos na função principal. Depois,
+chame uma função para modificar o vetor de modo que o primeiro elemento passe
+para a última posição, e desloque todos os outros para uma posição a esquerda.
+Imprima o vetor modificado na função main.
+
+Exemplo:
+Antes: 12 35 25 14 1 85 10 110 44 996
+Depois: 35 25 14 1 85 10 110 44 996 12
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+void func(int *p_vet){
+    int inicio = *p_vet;
+    
+    for(int i=1;i<10;i++){
+        *(p_vet+(i-1)) = *(p_vet+i);
+    }
+    
+    *(p_vet+9) = inicio;
+    
+    printf("\n");
+}
+
+int main()
+{
+    int vet[10], i=0;
+    
+    while(i < 10){
+        printf("vet[%d]=",i);
+        scanf("%d",&vet[i]);
+        i++;
+    }
+    
+    for(int i=0;i<10;i++){
+        printf("%d\t",vet[i]);
+    }
+    
+    func(vet);
+    
+    for(int i=0;i<10;i++){
+        printf("%d\t",vet[i]);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+/******************************************************************************
+
+5. Faça um algoritmo para ler os valores gastos em cheque por uma pessoa durante um
+mês na função principal. Depois crie uma função para encontrar imprimir: a lista com
+todos os valores, o maior valor, o menor valor e a média de todos os valores. No início
+do algoritmo o usuário deve informar quantos cheques foram usados; estabeleça um
+número máximo de cheques.
+
+*******************************************************************************/
+#include <stdio.h>
+
+#define MAX 31
+
+void func(int *p_vet, int total){
+    int maior = *p_vet;
+    int menor = *p_vet;
+    int soma = 0;
+    float media;
+    
+    for(int i=0;i<total;i++){
+        printf("%d\t",*(p_vet+i));
+        
+        if(*(p_vet+i) > maior){
+            maior = *(p_vet+i);
+        }
+        
+        if(*(p_vet+i) < menor){
+            menor = *(p_vet+i);
+        }
+        
+        soma += *(p_vet+i);
+    }
+    
+    media = (float) soma/total;
+
+    printf("\nmedia = %.2f\nmaior = %d\nmenor = %d",media,maior,menor);
+}
+
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    
+    while(n > MAX){
+        scanf("%d",&n);
+    }
+    
+    int vet[n];
+    
+    for(int i=0;i<n;i++){
+        printf("cheque[%d]=",i);
+        scanf("%d",&vet[i]);
+    }
+    
+    func(vet, n);
+    
+    return 0;
+}
+
+

@@ -1,0 +1,84 @@
+/*
+Desenvolva um algoritmo para:
+– Criar dinamicamente um vetor de n elementos na função principal;
+– Passar o vetor por parâmetro para uma função para inserir elementos;
+– A função deve apresentar os elementos ao usuário;
+– Liberar memória antes do término do programa.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+void teste(int *vetor, int n){
+    printf("\n%x\n",*vetor);
+    printf("%d\n",*nvetor);
+    /*for(int i=0;i<n;i++){
+        printf("\nvet[%d]=",i);
+        scanf("%d",(vetor+i));
+    }*/
+
+
+    //vetor: endereço da variavel vetor
+    //*vetor: busca o valor que p_vetor guarda (endereco)
+    //**vetor: vai no endereco que P_vetor aponta e busca o valor dele
+
+    /*for(int i=0;i<n;i++){
+        printf("%d\t",*(vetor+i));//retorna os valores que vetor aponta, apartir de &50
+    }*/
+}
+
+
+
+void funcao(int *vetor, int n){
+    for(int i=0;i<n;i++){
+        printf("\nvet[%d]=",i);
+        scanf("%d",(vetor+i));
+    }
+
+    for(int i=0;i<n;i++){
+        printf("%d\t",*(vetor+i));
+    }
+}
+
+
+int main()
+{
+    int n, *p_vetor = NULL;
+
+    printf("valor de N: ");
+    scanf("%d",&n);
+
+    p_vetor = (int*)malloc(n*sizeof(int));
+
+    if(p_vetor == NULL){
+        printf("error alocar memoria");
+        exit(0);
+    }
+
+    funcao(p_vetor, n);
+    free(p_vetor);
+
+    p_vetor = (int*)malloc(n*sizeof(int));
+
+    if(p_vetor == NULL){
+        printf("error alocar memoria");
+        exit(0);
+    }
+
+    funcao(p_vetor, n);
+    free(p_vetor);
+
+    p_vetor = (int*)malloc(sizeof(int)*n);
+
+
+    //endereco de p_vetor = &100
+    //p_vetor aponta pra 10 elementos apartir de &50
+
+    //teste recebe &100
+    teste(&p_vetor, n);
+
+
+    return 0;
+}

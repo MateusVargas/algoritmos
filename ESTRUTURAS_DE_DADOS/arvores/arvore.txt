@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct arvore {
+	int num;
+	struct arvore *esq;
+	struct arvore *dir;
+};
+
+typedef struct arvore arv;
+
+arv* insere(arv *r, int n){
+    arv *novo=(arv*)malloc(sizeof(arv));
+    novo->num=n;
+    novo->esq=NULL;
+    novo->dir=NULL;
+    
+    if(r==NULL){
+        r=novo;
+    }
+    else{
+        arv *aux = r, *ult;
+        while(aux!=NULL){
+            ult = aux;
+            if(n < aux->num){
+                aux=aux->esq;
+            }
+            else{
+                aux=aux->dir;
+            }
+        }
+        aux=ult;
+        if(n < aux->num){
+            aux->esq=novo;
+        }
+        else{
+            aux->dir=novo;
+        }
+    }
+    return r;
+}
+
+//formas de percurso:
+
+//raiz -> esq -> dir
+void impPrefixado(arv *r){
+    if(r!=NULL){
+        printf("%d\t",r->num);
+        
+        if(r->esq != NULL)//diminuindo numero de chamadas recursivas
+            impPrefixado(r->esq);
+        
+        if(r->dir != NULL)
+            impPrefixado(r->dir);
+    }
+}
+
+//esq -> raiz -> dir
+void impSimetrico(arv *r){
+    if(r!=NULL){
+        impSimetrico(r->esq);
+        printf("%d\t",r->num);
+        impSimetrico(r->dir);
+    }
+}
+
+//esq -> dir -> raiz
+void impPosfixado(arv *r){
+    if(r!=NULL){
+        impPosfixado(r->esq);
+        impPosfixado(r->dir);
+        printf("%d\t",r->num);
+    }
+}
+
+int main()
+{
+    arv *r;
+    r=insere(r,5);
+    r=insere(r,2);
+    r=insere(r,7);
+    r=insere(r,1);
+    r=insere(r,4);
+    r=insere(r,6);
+    r=insere(r,8);
+    
+    impPrefixado(r);
+    printf("\n");
+    impSimetrico(r);
+    printf("\n");
+    impPosfixado(r);
+    
+    return 0;
+}

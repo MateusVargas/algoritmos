@@ -1,0 +1,199 @@
+1- O que é e para que serve um ponteiro?
+para guardar endereços de memória de variáveis
+
+2- Qual das seguintes instruções é a maneira correta de declarar um ponteiro?
+a) int ptr x;
+b) int *ptr;
+c) *int ptr;
+d) *x;
+
+B
+
+
+3- Qual é a maneira correta de referenciar, através de um ponteiro, o valor de ch,
+assumindo que o endereço de ch foi atribuído ao ponteiro p1?
+a) *p1;
+b) ch;
+c) *ch;
+d) p1;
+
+C
+
+
+4- Na expressão float *pont; o que é do tipo float?
+a) a variável pont
+b) o endereço de pont
+c) a variável apontada por pont
+d) nenhuma das anteriores
+
+C
+
+
+
+5- Assumindo que o endereço de num foi atribuído a um ponteiro pnum, qual(is)
+das seguintes expressões estão corretas?
+a) if (num == &pnum)
+b) if (num == *pnum)
+c) if (pnum == *num)
+d) if (pnum == &num)
+
+B, D
+
+
+
+6- Suponha que queremos mostrar na tela o valor de x, e o endereço de x foi
+atribuído a um ponteiro px. A instrução a seguir é correta? Por quê?
+printf(“%d”, *px);
+
+é correta se o a variável apontada pelo ponteiro for do tipo int
+
+
+
+7- Qual é a instrução que deve ser adicionada ao programa abaixo para que ele
+funcione corretamente?
+
+int main (){
+int vlr, *p1;
+__________
+*p1 = 3;
+return 0;
+}
+
+a) p1 = vlr;
+b) p1 = *vlr;
+c) p1 = &vlr;
+d) *p1 = vlr;
+
+C
+
+
+
+8- Assumindo que o endereço da variável x foi atribuído a um ponteiro px, escreva
+uma função, sem utilizar a variável x, para verificar se o valor de x é par ou
+impar.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void funcao(int *p){
+	if(*p%2==0){
+		printf("par");
+	}
+	else{
+		printf("impar");
+	}
+}
+
+int main(){
+	int x = 40, *p;
+	p = &x;
+	funcao(p);
+	return 0;
+}
+
+
+
+
+
+9- Dado o seguinte trecho de código em C:
+int *p;
+int i = 10;
+p = &i;
+
+Qual afirmativa é falsa?
+a) p contém o endereço de i
+b) o valor de *p é 10
+c) ao executar o comando *p = 20; i passará a ter o valor 20
+d) ao alterar o valor de i, *p será modificado
+e) o valor de p é 10
+
+E
+
+
+
+10- Supondo que uma string contém o nome de um arquivo qualquer de imagem no
+formato gif. Faça uma função que, através de ponteiros (nome do vetor), altere a
+substring “gif” por “png”. Ex: foto1.gif à foto1.png
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void trocar_extensao(char *arquivo){
+    int pos_ponto, j=0;
+    char extensao[5];
+    fgets(extensao,6,stdin);
+
+    for(int i=0;i<strlen(arquivo);i++){
+        if(arquivo[i]=='.'){
+            pos_ponto=i;
+        }
+    }
+
+    for(int i=pos_ponto+1;i<pos_ponto+strlen(extensao);i++){
+        arquivo[i]=extensao[j++];
+    }
+}
+
+int main(){
+    char nome[20]={"foto.png"};
+    trocar_extensao(nome);
+    puts(nome);
+    return 0;
+}
+
+
+
+
+
+
+11- Suponha um vetor int vet[15]. Qual a instrução correta para acessar o 5º elemento do vetor?
+a) vet + 4
+b) *vet + 4
+c) *(vet + 4)
+d) &vet + 4
+
+C
+
+
+
+
+12- Escrever um programa que contenha uma função que recebe o nome de uma
+disciplina do curso de Sistemas para Internet e um caractere avulso. Usando
+ponteiros, a função deve informar o endereço da primeira ocorrência deste
+caractere no nome da disciplina (usar %x no printf). Igualmente, deve ser dada
+uma notificação caso o caractere não seja encontrado.
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void func(char *disciplina, char character){
+    int existe=0;
+
+    for(int i=0;i<strlen(disciplina);i++){
+        if(*(disciplina+i)==character){
+            existe=1;
+            printf("caractere achado na posicao [%d], endereco: %x\n",i,&*(disciplina+i));
+            break;
+        }
+    }
+
+    //*(disciplina+i) acessa elemento vetor atraves de ponteiros
+
+    if(!existe){
+        printf("caractere nao existe");
+    }
+}
+
+int main(){
+    char disciplina[30];
+    printf("disciplina: ");
+    fgets(disciplina,31,stdin);
+
+    func(&disciplina,'z');
+    return 0;
+}
+
+
+

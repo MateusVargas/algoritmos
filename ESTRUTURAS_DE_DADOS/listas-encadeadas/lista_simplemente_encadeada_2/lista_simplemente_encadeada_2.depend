@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1664656229 source:/home/mateus/Documentos/ESTRUTURAS_DE_DADOS/listas-encadeadas/lista_simplemente_encadeada_2/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

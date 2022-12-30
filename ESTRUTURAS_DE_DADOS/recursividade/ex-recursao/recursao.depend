@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1662472802 source:/home/mateus/Documentos/ESTRUTURAS_DE_DADOS/recursao/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

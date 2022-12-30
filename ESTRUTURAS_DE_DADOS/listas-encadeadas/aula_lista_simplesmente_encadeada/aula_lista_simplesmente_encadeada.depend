@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1664822963 source:c:\users\aluno\desktop\aula_lista_simplesmente_encadeada\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

@@ -1,0 +1,146 @@
+/******************************************************************************
+Crie um vetor de inteiros com 5 posições e adicione valores
+digitados pelo usuário. Utilizando o método visto
+anteriormente, mostre o conteúdo do vetor na tela.
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int vet[5]={1,2,3,4,5};
+    int *p = vet; //nome do vetor é um ponteiro pra posição[0]
+
+    printf("%d",*(p+2)); //3
+
+    for(int i=0;i<5;i++){
+        scanf("%d",(vet+i));
+    }
+    
+    for(int i=0;i<5;i++){
+        printf("vet[%d]=%d\n",i,*(vet+i));//acessa conteudo das posicoes
+        printf("vet[%d]=%x\n",i,(vet+i));//acessa endereco das posicoes
+    }
+
+    return 0;
+}
+
+
+
+
+
+// Crie um vetor chamado vet com 5 posições;
+// • Escreva uma função para atribuir ao vetor os valores
+// recebidos a partir do teclado;
+// • Crie funções (sempre usando ponteiros) para realizar as
+// seguintes operações:
+// – Localizar o maior valor no vetor;
+// – Localizar o menor valor no vetor;
+// – Mostrar os números pares do vetor.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void zerar_i(int *pont_i){
+    *pont_i = 0;
+}
+
+void atribuir(int *p_vet, int i){
+    for(;i<5;i++){
+        scanf("%d",(p_vet+i));
+    }
+}
+
+void achar_maior(int *p_vet, int i){
+    int maior = *(p_vet);
+    for(;i<5;i++){
+        if(*(p_vet+i) > maior){
+            maior = *(p_vet+i);
+        }
+    }
+    printf("maior: %d\n",maior);
+}
+
+void achar_menor(int *p_vet, int i){
+    int menor =*(p_vet);
+    for(;i<5;i++){
+        if(*(p_vet+i) < menor){
+            menor = *(p_vet+i);
+        }
+    }
+    printf("menor: %d\n",menor);
+}
+
+void mostrar_pares(int *p_vet, int i){
+    for(;i<5;i++){
+        if(*(p_vet+i) % 2 == 0){
+            printf("%d\t",*(p_vet+i));//usar '*' fora do parenteses para operações aritmeticas
+        }
+    }
+}
+
+void teste(int *pp){
+    //*pp é um ponteiro que guarda apenas a posicao[0], apartir disso vai acessando as valores seguintes com *(p+i)
+    printf("\n\n\n%d",*(pp));//posicao[0]
+    printf("\n%d",*pp);//posicao[0]
+    printf("\n%x",pp);//endereco posicao[0]
+    printf("\n%d",(*pp));//posicao[0]
+}
+
+int main(){
+    int i=0, vet[5];
+    atribuir(vet,i);    
+    
+    zerar_i(&i);
+    achar_maior(vet,i);
+    
+    zerar_i(&i);
+    achar_menor(vet,i);
+    
+    zerar_i(&i);
+    mostrar_pares(vet,i);
+    
+    teste(vet);
+    
+    return 0;
+}
+
+
+
+
+
+// Desenvolver um algoritmo que leia dois valores inteiros. Estes
+// valores devem ser passados por referência para uma função
+// que verificará se são pares. Caso sejam pares, deve-se
+// adicionar 5 a cada um deles. Caso contrário, adicionar 1. Os
+// novos valores das variáveis devem ser apresentados na função
+// main.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void func(int *pa, int *pb){
+    if(*pa%2 == 0){
+        (*pa)+=5;
+    }
+    else{
+        (*pa)++;
+        //*(pa)++;//nao funciona pra incrementar
+        //(*pa++);//nao funciona pra incrementar
+        //*(pa++);//nao funciona pra incrementar
+    }
+    
+    if(*pb%2 == 0){
+        (*pb)+=5;
+    }
+    else{
+        (*pb)++;
+    }
+}
+
+int main(){
+    int a = 7, b = 4;
+    func(&a,&b);
+    printf("a: %d, b: %d",a,b);
+    return 0;
+}

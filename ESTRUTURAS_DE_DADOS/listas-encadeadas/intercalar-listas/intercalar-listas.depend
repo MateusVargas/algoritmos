@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1665242792 source:/home/mateus/Documentos/ESTRUTURAS_DE_DADOS/listas-encadeadas/intercalar-listas/main.c
+	<stdio.h>
+	<stdlib.h>
+

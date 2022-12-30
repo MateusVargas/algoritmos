@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1665265375 source:/home/mateus/Documentos/ESTRUTURAS_DE_DADOS/listas-encadeadas/lista-simplemente-encadeada-circular/main.c
+	<stdio.h>
+	<stdlib.h>
+

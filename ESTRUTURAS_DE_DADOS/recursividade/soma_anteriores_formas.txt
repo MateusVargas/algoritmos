@@ -1,0 +1,70 @@
+/******************************************************************************
+
+Criar uma função recursiva para calcular o somatório dos números positivos até o valor N recebido por parâmetro. 
+A função deve retornar o resultado ao programa principal, onde será impresso.
+
+
+*******************************************************************************/
+#include <stdio.h>
+
+int rec(int n){
+    
+    if(n == 1){
+        return 1;
+    }
+    
+    n = n+rec(n-1);
+    
+    return n;
+}
+
+
+int rec2(int n, int n2, int i, int soma){
+    
+    if(i==n){
+        return soma;
+    }
+    
+    soma+=n2;
+    
+    return rec2(n,n2-1,i+1,soma);
+}
+
+
+void rec3(int n, int n2, int i, int soma){
+    if(i==n){
+        printf("%d",soma);
+        return;
+    }
+    
+    soma+=n2;
+    
+    rec3(n, n2-1, i+1, soma);
+}
+
+
+int main()
+{
+    int n = 5;
+    printf("%d\n",rec(n));
+    printf("%d\n",rec2(n,n,0,0));
+    rec3(n,n,0,0);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

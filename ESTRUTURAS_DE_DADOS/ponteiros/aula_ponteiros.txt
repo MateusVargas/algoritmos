@@ -1,0 +1,205 @@
+//Escreva um programa que contenha uma variável num para receber um
+//valor inteiro.
+//• Crie um ponteiro que receba o endereço de memória dessa variável.
+//• Através do operador de conteúdo do ponteiro, altere o valor de num para
+//1 e apresente o resultado na tela.
+/*
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+	int num = 56, *pont_num;
+	pont_num = &num;
+
+	*pont_num = 1;
+	printf("%d",num);
+
+	//int g = 4, *p;
+    //p=&g;
+    //printf("%d\n",g);
+    //scanf("%d",&*p);
+    //printf("%d",g);
+
+	return 0;
+}
+
+*/
+
+
+
+
+
+/*Escreva um programa que contenha duas variáveis (inteira e
+real), atribua um valor a elas e crie dois ponteiros, cada um
+apontando para uma das variáveis.
+• Mostrar na tela:
+– O valor das variáveis
+– O endereço de memória das variáveis
+– O valor dos ponteiros
+– O endereço de memória dos ponteiros
+– O valor apontado pelos ponteiros*/
+/*
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+    int i = 5;
+    float f = 4;
+    int *pi = &i;
+    float *pf = &f;
+
+    *pi=90;
+    *pf=46;
+
+    printf("valor de i: %d\n",i);
+    printf("valor de f: %.2f\n",f);
+    printf("endereco de memoria de i: %x\n",&i);
+    printf("endereco de memoria de f: %x\n",&f);
+    printf("valor do ponteiro de i: %x\n",pi);
+    printf("valor do ponteiro de f: %x\n",pf);
+    printf("endereco de memoria de PI (ponteiro de i): %x\n",&pi);
+    printf("endereco de memoria de PF (ponteiro de f): %x\n",&pf);
+    printf("valor apontado pelo ponteiro PI: %d\n",*pi);
+    printf("valor apontado pelo ponteiro PF: %.2f\n",*pf);
+
+    return 0;
+}*/
+
+
+
+
+
+/*
+Crie uma variável do tipo inteiro e atribua um valor qualquer.
+• Crie um ponteiro que aponte para esta variável (receba seu
+endereço de memória).
+• Utilizando ponteiros, imprima na tela o valor contido na
+variável.
+• Imprima o conteúdo das próximas 20 posições inteiras na
+memória.
+*/
+/*
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+    int num = 8, *p = &num;
+    printf("valor contido em num: %d",*p);
+
+    for(int i=0;i<20;i++){
+        printf("%x\t",p);
+        printf("%d\n",*p);//serao impresso valores aleatorios, pois os novos incrementos estarao apontando pra valores indefinidos
+        p++; //p é um ponteiro de int, então p++ soma 4 bytes no endereco atual, ele deixa de apontar pro endereco anterior e passa a apontar pro novo
+    }
+
+    return 0;
+}*/
+
+
+
+
+
+/*
+Escreva um programa que contenha duas variáveis inteiras
+com dois valores quaisquer. Crie dois ponteiros que apontam
+para essas variáveis.
+• Compare os dois ponteiros e mostre na tela qual o ponteiro
+está mais “adiante” na memória.
+*/
+/*
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+    int a = 5, b = 7;
+    int *pA = &a, *pB = &b;
+
+    if(pA > pB){
+        printf("pA esta mais adiante que pB.\n pA: %x\n pB: %x\n endereco de A: %x\n endereco de B: %x",pA,pB,&a,&b);
+    } else {
+        printf("pB esta mais adiante que pA.\n pB: %x\n pA: %x\n endereco de B: %x\n endereco de A: %x",pB,pA,&b,&a);
+    }
+
+    //printf("\n\n\n%d, %x",&a,&a);
+    //se printar o endereco com %d em vex de %x é feita uma conversão do %x que é hexadecimal para inteiro
+
+    return 0;
+}*/
+
+
+
+
+
+/*
+- Supondo que uma string contém o nome de um arquivo qualquer de imagem no
+formato gif. Faça uma função que, através de ponteiros (nome do vetor), altere a
+substring “gif” por “png”. Ex: foto1.gif à foto1.png
+*/
+/*#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void trocar_extensao(char *arquivo){
+    int pos_ponto, j=0;
+    char extensao[5];
+    fgets(extensao,6,stdin);
+
+    for(int i=0;i<strlen(arquivo);i++){
+        if(arquivo[i]=='.'){
+            pos_ponto=i;
+        }
+    }
+
+    for(int i=pos_ponto+1;i<pos_ponto+strlen(extensao);i++){
+        arquivo[i]=extensao[j++];
+    }
+}
+
+int main(){
+    char nome[20]={"foto.png"};
+    trocar_extensao(nome);
+    puts(nome);
+    return 0;
+}*/
+
+
+
+
+/*
+Escrever um programa que contenha uma função que recebe o nome de uma
+disciplina do curso de Sistemas para Internet e um caractere avulso. Usando
+ponteiros, a função deve informar o endereço da primeira ocorrência deste
+caractere no nome da disciplina (usar %x no printf). Igualmente, deve ser dada
+uma notificação caso o caractere não seja encontrado
+*/
+/*
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void func(char *disciplina, char character){
+    int existe=0;
+
+    for(int i=0;i<strlen(disciplina);i++){
+        if(*(disciplina+i)==character){
+            existe=1;
+            printf("caractere achado na posicao [%d], endereco: %x\n",i,&*(disciplina+i));
+            break;
+        }
+    }
+
+    //*(disciplina+i) acessa elemento vetor atraves de ponteiros
+
+    if(!existe){
+        printf("caractere nao existe");
+    }
+}
+
+int main(){
+    char disciplina[30];
+    printf("disciplina: ");
+    fgets(disciplina,31,stdin);
+
+    func(&disciplina,'z');
+    return 0;
+}*/
