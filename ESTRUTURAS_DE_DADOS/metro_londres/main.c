@@ -1708,7 +1708,7 @@ PERCURSO ENTRE Piccadilly e Liverpool
 a origem (Piccadilly) é adicionada na pilha e
 inicia o loop pra percorrer as conexoes dela.
 
-na 1a iteracao do loop do case 5 é feita a 1a chamada recursiva passando a 1a conexao
+na 1a iteracao do loop do case 4 é feita a 1a chamada recursiva passando a 1a conexao
 de Piccadilly que é Oxford
 
 1a it:
@@ -1748,7 +1748,7 @@ continuação 3a it:
 -chama funcao pra remover da pilha o ultimo elemento que é Farrington
 -sai do if e vai pra linha onde tem c = c->prox, c recebe proxima conexao de Kings Cross que é Warren
 -verifica se Warren tá na pilha (sim já tá) nao entra no IF e c recebe c->prox que é NULL
--sai do while, e encerra a 4a execução
+-sai do while, e encerra a 3a execução
 
 
 continuação 2a it:
