@@ -2,6 +2,9 @@
 
 int func(int num, int num2, int i, int soma){
 
+    //este return soma só vai retornar pra execução anterior,
+    //se a chamada da main não for a execução anterior ela não
+    //acessará esse retorno por isso precisa do return da linha 22
     if(i==(num-1)){
         return soma;    
     }
