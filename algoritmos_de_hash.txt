@@ -1,0 +1,85 @@
+Como funciona um algorítimo de Hash e como evitar ataques em sistemas
+
+Uma função Hash toma uma entrada, por exemplo, um número, frase, arquivo ou senha e calcula uma sequência a partir da mesma, normalmente representada em formato hexadecimal.
+
+Na imagem abaixo segue um exemplo de funcionamento do Hash, dado um valor no conjunto da esquerda, é calculado uma representação no conjunto da direita e aplicado uma função matemática para calcular um novo valor.
+
+Essa função é apenas didática, pois ela gera colisão muito facilmente. Por exemplo: as palavras SEGREDO e SERGEDO gerariam o mesmo Hash.
+
+
+
+São exemplo de funções Hash: MD4, MD5, SHA1, SHA256, SHA512.
+
+Como funciona uma função Hash
+
+A primeira prerrogativa de uma função Hash é que, dada uma entrada e calculado o Hash, não deve ser possível calcular de volta o valor original. Na função de exemplo, a palavra de origem poderia ter sido qualquer combinação das letras envolvidas ou mesmo outras letras e palavras maiores ou menores.
+
+Outra das prerrogativas de algorítimos de Hash é que, dada uma entrada, a saída é sempre a mesma, por exemplo, o Hash MD5 da letra A sempre será: bf072e9119077b4e76437a93986787ef, não importa quantas vezes usamos ele.
+
+Em um algorítimo Hash eficiente, ao alterar 1 bit da entrada, pelo menos metade dos bits de saída devem ser alterados, então, enquanto o MD5 da letra A é bf072e9119077b4e76437a93986787ef, o MD5 da letra B, que tem apenas 1 bit de diferença é 30cf3d7d133b08543cb6c8933c29dfd7, algo totalmente diferente.
+
+Isso é assim para evitar reverter o Hash, ou seja, tentar deduzir qual foi a entrada a partir de um Hash conhecido.
+
+Por isso os algorítimos Hash são bons para armazenar senhas, pois um usuário que definiu sua senha com a palavra “secreto” vai ter armazenado no banco de dados ou arquivo de senhas a palavra 88dabf3d5306998c155971257440f3be equivalente ao seu MD5 em notação hexadecimal.
+
+Alguém que tenha acesso à esse banco de dados não vai saber diretamente que a senha era “secreto” e na verdade nem as letras que faziam parte ou que a senha tinha 7 letras.
+
+Quando esse mesmo usuário tentar autenticar, o sistema deve calcular o Hash MD5 da senha digitada e comparar com a palavra armazenada 88dabf3d5306998c155971257440f3be, se coincidirem, o usuário acertou a senha.
+
+Problemas do Hash MD5
+
+Mas existe um problema, o Hash MD5 para a palavra “secreto” é e sempre será 88dabf3d5306998c155971257440f3be, ou seja, um ataque de força bruta (onde testamos diversas palavras e calculamos seu MD5) encontraria palavras curtas e que existem no dicionário rapidamente.
+
+Isso é mais grave ainda em sistemas que permitem apenas senhas numéricas, muitos usuários utilizam datas de aniversário, de nascimento dos filhos ou de casamento, se considerarmos todas as datas de 1900 até 2100, temos apenas 73048 dias, em um sistema que pede 8 dígitos onde o usuário tinha 100 milhões de combinações possíveis, testar apenas 0,073% das combinações deve quebrar perto de 99% das senhas.
+
+Por isso pedimos aos usuários que adicionem símbolos, números e variem entre maiúsculas e minúsculas, para aumentar a complexidade do ataque.
+
+Os ataques de força bruta podem ser otimizados para ataques de dicionário. Podemos, por exemplo, deixar calculado o Hash de todas as palavras em inglês e português, nomes de pessoas, animais de estimação, cidades e datas com 6 e 8 dígitos, em formato americano e internacional.
+
+Alguns Gigabytes são suficientes para armazenar todos os Hashs, e aí encontrar uma senha a partir do Hash demoraria menos de um segundo em um banco de dados ordenado. Tanto é que existe um site chamado crackstation.net que faz isso de graça e eles disponibilizam as bases.
+
+No ataque onde os Hashs ficam pré-armazenados, as tabelas são chamadas de Rainbow Tables.
+
+Nesse outro site temos comandos para gerar nossas próprias tabelas com caracteres variados utilizando até GPU: project-rainbowcrack.com/table.htm, o resultado podem ser alguns Terabytes de disco utilizado, mas faz com que o ataque ocorra em segundos.
+
+Usando Hashs mais avançados para evitar ataques
+
+Para evitar o ataque de dicionário ou de rainbow tables, utiliza-se a técnica de Salt. Num exemplo simples, digamos que o salt seja a letra A para a primeira vez e a letra B para a segunda vez. Neste caso calcularíamos o MD5 de “Asenha” e “Bsenha”, que são respectivamente: bfea17d7c6a92d55f77b81a50326f421 e e6870c54d31bc0519cbc243a0cc2ccdc, ou seja, palavras totalmente diferentes.
+
+Armazenamos o salt junto com o Hash, por exemplo, você pode ver esse formato em alguns sistemas: $A$bfea17d7c6a92d55f77b81a50326f421 e $B$e6870c54d31bc0519cbc243a0cc2ccdc. O salt não precisa ser secreto, pois só serve para evitar ataque de rainbow tables.
+
+Para validar a senha de um usuário, pegamos o Salt armazenado, concatenamos a senha digitada e calculamos o Hash, se coincidir com a palavra armazenada, o usuário acertou a senha.
+
+Claro que em ambientes de produção o Salt tem um tamanho maior do que 1 byte do exemplo.
+
+O Salt não impede que sejam feitos os ataques de dicionário ou força bruta (tentar todas as combinações de letras, números e símbolos), mas o custo computacional para quebrar uma senha começa a ficar inviável. Por exemplo: uma senha de 10 caracteres onde o cliente pode escolher maiúsculas, minúsculas, números e alguns símbolos pode demorar vários anos.
+
+Outro ponto sobre algorítimos Hash é que eles permitem colisão, ou seja, duas ou mais entradas de dados podem gerar o mesmo Hash, embora um bom algoritmo tende a gerar poucas colisões.
+
+É impossível evitar colisão, já que no conjunto de entradas existe uma possibilidade infinita (podemos ter desde arquivos pequenos, com um único byte, até arquivos com dezenas de terabytes, onde o conteúdo é aleatório), enquanto que no conjunto de saída as possibilidades são finitas (por exemplo, no algorítimo MD5, temos 128 bits de saída, o que daria 16 caracteres, ou 32 caracteres em notação hexadecimal), uma quantidade grande, mas ainda limitada.
+
+Existem exemplos práticos em colisão em MD5. Em www.mscs.dal.ca/~selinger/md5collision/ temos duas strings que geram o mesmo MD5 (note que são ligeiramente diferentes):
+
+d131dd02c5e6eec4693d9a0698aff95c2fcab58712467eab4004583eb8fb7f89 55ad340609f4b30283e488832571415a085125e8f7cdc99fd91dbdf280373c5b d8823e3156348f5bae6dacd436c919c6dd53e2b487da03fd02396306d248cda0 e99f33420f577ee8ce54b67080a80d1ec69821bcb6a8839396f9652b6ff72a70
+e
+
+d131dd02c5e6eec4693d9a0698aff95c2fcab50712467eab4004583eb8fb7f89 55ad340609f4b30283e4888325f1415a085125e8f7cdc99fd91dbd7280373c5b d8823e3156348f5bae6dacd436c919c6dd53e23487da03fd02396306d248cda0 e99f33420f577ee8ce54b67080280d1ec69821bcb6a8839396f965ab6ff72a70
+E em natmchugh.blogspot.com/2015/02/create-your-own-md5-collisions.html o autor utilizou pequenas alterações nos bytes das imagens (alterações de 1 bit por pixel, que muda levemente a cor, imperceptível para o olho humano) para fazer essas duas imagens terem o mesmo MD5:
+
+
+
+
+Claramente tem uma colisão acontecendo aqui
+Existem outros exemplos de demonstração, como dois PDFs com conteúdos distintos, mas mesmo tamanho, terem sido alterados nos Metadados dos arquivos para que houvesse colisão de MD5, ou dois programas executáveis diferentes com o mesmo MD5.
+
+Para evitar receber um arquivo malicioso, uma tática é utilizar dois algorítimos de Hash distintos, computacionalmente é muito custoso gerar dois arquivos que colidam com dois algorítimos diferentes, por exemplo, MD5 e SHA1.
+
+Apesar desses problemas, Hash é uma excelente solução para armazenamento e validação de senhas e para verificação de dados e arquivos recebidos (downloads de ISOs por exemplo).
+
+Para evitar problemas, procure sempre utilizar as últimas opções disponíveis e bibliotecas fornecidas pela linguagem de programação.
+
+IMPORTANTE 1: MD5 foi utilizado aqui apenas como exemplo didático, sabe-se que é possível calcular colisão em MD5 a partir de estudos de 2006, ou seja, a muito tempo…
+
+IMPORTANTE 2: o exemplo de cáculo de Hash apresentado na figura 1 é apenas para uso didático, não use em produção
+
+IMPORTANTE 3: o exemplo de Salt aqui apresentado para armazenar senhas, apesar de correto, é muito simplista. Se você precisa armazenar e autenticar senhas em seu sistema, use as bibliotecas nativas da linguagem, você não vai (assim como eu não me considero) virar especialista em criptografia lendo um artigo num blog.
