@@ -17,7 +17,7 @@ b) ch;
 c) *ch;
 d) p1;
 
-C
+A
 
 
 4- Na expressão float *pont; o que é do tipo float?
