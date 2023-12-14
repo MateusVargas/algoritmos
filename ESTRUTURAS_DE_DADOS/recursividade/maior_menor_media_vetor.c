@@ -109,6 +109,14 @@ float calc_media2(int vet[5],int i,int f){
 	return soma;
 }
 
+float calc_media3(int vet[],int n,int i){
+	if(n==0) return 0;
+	int soma=0;
+	soma+=vet[n-1]+calc_media3(vet,n-1,i+1);
+	if(i==0) return (float)soma/n;
+	return soma;
+}
+
 int main(){
 	int vet[5]={6,34,9,2,20};
 	printf("maior: %d\n",v_maior(vet,0,vet[0]));
@@ -118,7 +126,8 @@ int main(){
 	printf("produto: %d\n",calc_produto(vet,0));
 	calc_produto2(vet,0,1);
 	calc_media(vet,0,0,0);
-	printf("media: %.2f",calc_media2(vet,0,5));
+	printf("media: %.2f\n",calc_media2(vet,0,5));
+	printf("media: %.2f",calc_media3(vet,5,0));
 	
 	return 0;
 }
