@@ -153,7 +153,7 @@ Arvore* remover(Arvore* raiz, int valor){
 	            if(filho != NULL){
 	                anterior->esq = filho->esq;
 	                filho->esq = remover(raiz->esq , valor);
-    	            filho->dir = raiz->dir;
+    	            	filho->dir = raiz->dir;
 	            }
             }
             else{
@@ -162,9 +162,9 @@ Arvore* remover(Arvore* raiz, int valor){
 	            porque esse filho é o elemento mais a direita então obviamente ele não vai ter filhos a direita.
 	            E faz o filho receber os apontamentos do elemento a ser removido
 	            */
-	            anterior->dir = filho->esq;
-              filho->esq = remover(raiz->esq , valor);
-	            filho->dir = raiz->dir;
+	        anterior->dir = filho->esq;
+              	filho->esq = remover(raiz->esq , valor);
+	        filho->dir = raiz->dir;
             }
 
             /*se não tem filhos a direita na sub-arvore da esquerda e tbm não tem filhos a esquerda na sub-arvore da direita, 
