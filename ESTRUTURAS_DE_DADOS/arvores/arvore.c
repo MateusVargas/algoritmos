@@ -614,7 +614,59 @@ nesse caso o nó a ser removido deve ser substituido pelo nó mais a esquerda da
 substituí-lo pelo nó mais a direita da subarvore da esquerda 
 
 
+remoção nó 30
+remover(raiz, 30)
+
+1a it.
+    -função remover é chamada recebendo a raiz que é 15 e o valor que é 30
+    -verifica se raiz é null, falso
+    -verifica se raiz->valor == valor, 15 == 30, falso
+    -no else, verifica se valor < raiz->valor, 30 < 15, falso
+    -então chama função remover passando nó a DIREITA de 15 que é o nó 21, aqui a lógica é verificar em qual lado da árvore o valor está para fazer a recursão no lado certo, pois a árvore usa o principio de maiores a direita e menores a esquerda
+    -depois que a 2a it. terminou, raiz->direita = 21, pois foi retornado 21 da 2a it, ou seja o nó 15->direita que antes apontava pro nó 21 agora aponta para o nó 21, ou seja nada mudou tambem
+    -por fim, retorna o nó 15 pra main() onde foi chamada a função remover(), ou seja retorna a mesma raiz que recebeu pois a raiz (15) não foi alterada
+    
+
+2a it.
+    -função remover é chamada recebendo a raiz que é 21 e o valor que é 30
+    -verifica se raiz é null, falso
+    -verifica se raiz->valor == valor, 21 == 30, falso
+    -no else, verifica se valor < raiz->valor, 30 < 21, falso
+    -então chama função remover passando nó a DIREITA de 21 que é o nó 30
+    -depois que a 3a it. terminou, raiz->direita = 29, pois foi retornado 29 da 3a it, ou seja o nó 21->direita que antes apontava pro nó 30 agora aponta para o nó 29
+    -por fim, retorna o nó 21 pra execução anterior
+
+3a it.
+    -função remover é chamada recebendo a raiz que é 30 e o valor que é 30
+    -verifica se raiz é null, falso
+    -verifica se raiz->valor == valor, 30 == 30, true
+    -então verifica se a esquerda E direita da raiz são nulas ou seja se é um nó folha, falso
+    -então no else, verifica se a esquerda OU A direita da raiz são nulas, ou seja se um dos lados é NULL, false
+    -então tanto esquerda quanto direita são != NULL, nesse caso busca o nó mais a direita da subarvore da esquerda que o nó 29
+    -faz raiz->valor = aux->valor, que significa: atribui pra raiz que é 30 o valor de 29
+    -faz o nó 29 passar a ter o valor 30
+    -os valores dos nós 29 e 30 foram trocados um com o outro
+    -chama função remover passando nó a ESQUERDA do nó 30 (que foi trocado o valor pra 29), que é o nó 28
+    -depois que a 4a it. terminou, raiz->esquerda = 28, pois foi retornado 28 da 4a it, ou seja o nó 29->esquerda que antes apontava pro nó 28 agora aponta pro 28 nada mudou
+    -por fim, retorna o nó 29 pra execução anterior
+    
+4a it.
+    -função remover é chamada recebendo a raiz que é 28 e o valor que é 30
+    -verifica se raiz é null, falso
+    -verifica se raiz->valor == valor, 28 == 30, falso
+    -no else, verifica se valor < raiz->valor, 30 < 28, falso
+    -então chama função remover passando nó a DIREITA de 28 que é o nó 29 mas que foi trocado valor pra 30
+    -depois que a 5a it. terminou, raiz->direita = NULL, pois foi retornado NULL da 5a it, ou seja o nó 28->direita que antes apontava pro nó 29 agora aponta pra NULL
+    -por fim, retorna o nó 28 pra execução anterior
+    
+5a it.
+    -função remover é chamada recebendo a raiz que é o nó 29 mas que foi trocado valor pra 30, e o valor que é 26
+    -verifica se raiz é null, falso
+    -verifica se raiz->valor == valor, 30 == 30, true
+    -então verifica se a esquerda E direita da raiz são nulas ou seja se é um nó folha, true
+    -libera da memória o nó 29 que foi trocado valor pra 30, retorna NULL pra execução anterior
 */
+
 No* remover(No *raiz, int valor){
     if(raiz == NULL){
         printf("valor não encontrado\n");
